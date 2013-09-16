@@ -15,7 +15,19 @@ file that was distributed with this source code.
         <h3>{{ settings.title }}</h3>
     {% endif %}
 
-    {% for entry in entries %}
-        {{ i18n_timeline_render(entry) }}
-    {% endfor %}
+    <ul>
+        {% for entry in entries %}
+            {% set subject = entry.getComponent('subject') %}
+            {% set target = entry.getComponent('target') %}
+
+            <li>
+                {{ sonata_timeline_generate_link(subject) }} => {{ entry.verb }} =>
+
+                {{ sonata_timeline_generate_link(target) }}
+            </li>
+
+        {% else %}
+            No action for now ...
+        {% endfor %}
+    </ul>
 {% endblock %}

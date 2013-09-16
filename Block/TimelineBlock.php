@@ -13,7 +13,6 @@ namespace Sonata\TimelineBundle\Block;
 
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\NewsBundle\Model\PostManagerInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
 use Spy\Timeline\Model\TimelineInterface;
@@ -71,19 +70,19 @@ class TimelineBlock extends BaseBlockService
 
         $entries = $this->timelineManager->getTimeline($subject, array(
             'page'            => 1,
-            'max_per_page'    => 10,
+            'max_per_page'    => $blockContext->getSetting('max_per_page'),
             'type'            => TimelineInterface::TYPE_TIMELINE,
-            'context'         => 'GLOBAL',
-            'filter'          => true,
-            'group_by_action' => true,
-            'paginate'        => true,
+            'context'         => $blockContext->getSetting('context'),
+            'filter'          => $blockContext->getSetting('filter'),
+            'group_by_action' => $blockContext->getSetting('group_by_action'),
+            'paginate'        => $blockContext->getSetting('paginate'),
         ));
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'context'  => $blockContext,
             'settings' => $blockContext->getSettings(),
             'block'    => $blockContext->getBlock(),
-            'entries'  => $entries,
+            'entries'  => $entries
         ), $response);
     }
 
@@ -103,7 +102,7 @@ class TimelineBlock extends BaseBlockService
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
                 array('title', 'text', array('required' => false)),
-                array('number', 'integer', array('required' => true)),
+                array('max_per_page', 'integer', array('required' => true)),
             )
         ));
     }
@@ -113,7 +112,7 @@ class TimelineBlock extends BaseBlockService
      */
     public function getName()
     {
-        return 'Recent Posts';
+        return 'Timeline';
     }
 
     /**
@@ -122,9 +121,13 @@ class TimelineBlock extends BaseBlockService
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'number'     => 10,
-            'title'      => 'Latest Actions',
-            'template'   => 'SonataTimelineBundle:Block:timeline.html.twig'
+            'max_per_page'    => 10,
+            'title'           => 'Latest Actions',
+            'template'        => 'SonataTimelineBundle:Block:timeline.html.twig',
+            'context'         => 'GLOBAL',
+            'filter'          => true,
+            'group_by_action' => true,
+            'paginate'        => true,
         ));
     }
 }

@@ -27,6 +27,13 @@
             <argument type="service" id="spy_timeline.action_manager" />
             <argument type="service" id="spy_timeline.timeline_manager" />
             <argument type="service" id="security.context" />
+            <argument type="service" id="sonata.admin.pool" />
+        </service>
+
+        <service id="sonata.timeline.twig.extension" class="Sonata\TimelineBundle\Twig\Extension\SonataTimelineExtension">
+            <tag name="twig.extension"/>
+
+            <argument type="service" id="sonata.admin.pool" />
         </service>
     </services>
 </container>

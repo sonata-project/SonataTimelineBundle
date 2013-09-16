@@ -55,10 +55,12 @@ class AdminExtension extends BaseAdminExtension
     /**
      * @param ComponentInterface $subject
      * @param string             $verb
+     * @param array              $components
      */
     protected function create(ComponentInterface $subject, $verb, $components = array())
     {
         $action = $this->actionManager->create($subject, $verb, $components);
+
         $this->actionManager->updateAction($action);
     }
 
@@ -68,7 +70,7 @@ class AdminExtension extends BaseAdminExtension
     public function postUpdate(AdminInterface $admin, $object)
     {
         $this->create($this->getSubject(), 'sonata.admin.update', array(
-            $this->getTarget($admin, $object),
+            'target' => $this->getTarget($admin, $object),
         ));
     }
 
@@ -78,7 +80,7 @@ class AdminExtension extends BaseAdminExtension
     public function postPersist(AdminInterface $admin, $object)
     {
         $this->create($this->getSubject(), 'sonata.admin.create', array(
-            $this->getTarget($admin, $object),
+            'target' => $this->getTarget($admin, $object),
         ));
     }
 
@@ -88,7 +90,7 @@ class AdminExtension extends BaseAdminExtension
     public function postRemove(AdminInterface $admin, $object)
     {
         $this->create($this->getSubject(), 'sonata.admin.delete', array(
-            $this->getTarget($admin, $object),
+            'target' => $this->getTarget($admin, $object),
         ));
     }
 }

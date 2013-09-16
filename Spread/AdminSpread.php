@@ -65,7 +65,7 @@ class AdminSpread implements SpreadInterface
             ->setParameter('roles', '%"ROLE_SUPER_ADMIN"%');
 
         foreach ($qb->getQuery()->iterate() as $user) {
-            $coll->add(new EntryUnaware($this->userClass, $user[0]->getId()));
+            $coll->add(new EntryUnaware($this->userClass, $user[0]->getId()), 'SONATA_ADMIN');
         }
     }
 }
