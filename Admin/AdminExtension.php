@@ -71,6 +71,7 @@ class AdminExtension extends BaseAdminExtension
     {
         $this->create($this->getSubject(), 'sonata.admin.update', array(
             'target' => $this->getTarget($admin, $object),
+            'target_text' => $admin->toString($object),
         ));
     }
 
@@ -81,16 +82,17 @@ class AdminExtension extends BaseAdminExtension
     {
         $this->create($this->getSubject(), 'sonata.admin.create', array(
             'target' => $this->getTarget($admin, $object),
+            'target_text' => $admin->toString($object),
         ));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function postRemove(AdminInterface $admin, $object)
+    public function preRemove(AdminInterface $admin, $object)
     {
         $this->create($this->getSubject(), 'sonata.admin.delete', array(
-            'target' => $this->getTarget($admin, $object),
+            'target_text' => $admin->toString($object),
         ));
     }
 }
