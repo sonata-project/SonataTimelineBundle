@@ -1,0 +1,31 @@
+{
+    "name": "sonata-project/timeline-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony SonataTimelineBundle ~ integrate SpyTimelineBundle into Sonata",
+    "keywords": ["sonata", "date", "time", "wall"],
+    "homepage": "http://sonata-project.org/bundles/timeline",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Rabaix",
+            "email": "thomas.rabaix@sonata-project.org"
+        },
+        {
+            "name": "Sonata Community",
+            "homepage": "https://github.com/sonata-project/SonataTimelineBundle/contributors"
+        }
+    ],
+    "require": {
+        "stephpy/TimelineBundle": "2.0.*@dev",
+        "stephpy/timeline": "~1.0@dev"
+    },
+    "autoload": {
+        "psr-0": { "Sonata\\TimelineBundle": "" }
+    },
+    "target-dir": "Sonata/TimelineBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.3.x-dev"
+        }
+    }
+}
