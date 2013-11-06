@@ -78,7 +78,7 @@ class TimelineBlock extends BaseBlockService
             'paginate'        => $blockContext->getSetting('paginate'),
         ));
 
-        return $this->renderResponse($blockContext->getTemplate(), array(
+        return $this->renderPrivateResponse($blockContext->getTemplate(), array(
             'context'  => $blockContext,
             'settings' => $blockContext->getSettings(),
             'block'    => $blockContext->getBlock(),
