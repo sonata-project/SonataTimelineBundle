@@ -25,6 +25,7 @@ Installation
         return array(
             // ...
             new Spy\TimelineBundle\SpyTimelineBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\TimelineBundle\SonataTimelineBundle(),
             // ...
         );

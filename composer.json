@@ -18,6 +18,7 @@
     "require": {
         "stephpy/TimelineBundle": "2.0.*@dev",
         "stephpy/timeline": "~1.0@dev",
+        "sonata-project/core-bundle": "~2.2",
         "sonata-project/block-bundle": "~2.2,>=2.2.1"
     },
     "autoload": {
