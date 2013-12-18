@@ -93,6 +93,7 @@ Installation
 
         blocks:
             # ... other blocks
+            
             sonata.timeline.block.timeline:
 
     sonata_admin:
@@ -101,4 +102,5 @@ Installation
         dashboard:
             blocks:
                 # ... other blocks
+                
                 - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
