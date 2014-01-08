@@ -111,7 +111,7 @@ class SonataTimelineExtension extends Extension
             'targetEntity' => $config['class']['action'],
             'cascade' => array(),
             'mappedBy' => NULL,
-            'inversedBy' => NULL,
+            'inversedBy' => 'timelines',
             'joinColumns' => array(
                 array(
                     'name' => 'action_id',
@@ -158,7 +158,7 @@ class SonataTimelineExtension extends Extension
             'targetEntity' => $config['class']['action'],
             'cascade' => array(),
             'mappedBy' => NULL,
-            'inversedBy' => 'actionsComponents',
+            'inversedBy' => 'actionComponents',
             'joinColumns' => array(
                 array(
                     'name' => 'action_id',
