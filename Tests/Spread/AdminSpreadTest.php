@@ -16,6 +16,35 @@ use Spy\Timeline\Spread\Entry\EntryCollection;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 
 /**
+ * Class FakeUserEntity
+ *
+ * This is a fake entity class
+ */
+class FakeUserEntity
+{
+    /**
+     * @var integer
+     */
+    protected $id;
+
+    /**
+     * @param $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+
+/**
  * Class AdminSpreadTest
  *
  * This is a unit test class for \Sonata\TimelineBundle\Spread\AdminSpread
@@ -41,7 +70,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
     public function testSupportsMethod()
     {
         $registryMock = $this->getMock('\Symfony\Bridge\Doctrine\RegistryInterface');
-        $spread = new AdminSpread($registryMock, '\Sonata\UserBundle\Entity\User');
+        $spread = new AdminSpread($registryMock, '\Sonata\TimelineBundle\Tests\Spread\FakeUserEntity');
 
         // Test non-supported verbs
         $action = new Action();
@@ -66,59 +95,46 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
         $action = new Action();
         $action->setVerb('a.not.supported.verb');
 
-        $spread = new AdminSpread($this->createRegistryMock(), 'FOS\UserBundle\Entity\User');
+        $spread = $this->getMockBuilder('\Sonata\TimelineBundle\Spread\AdminSpread')
+            ->disableOriginalConstructor()
+            ->setMethods(array('getUsers'))
+            ->getMock();
+        $spread->expects($this->any())->method('getUsers')->will($this->returnValue($this->getFakeUsers()));
 
         $collection = new EntryCollection();
         $spread->process($action, $collection);
 
-        $this->assertCount(2, $collection->getIterator(), 'Should return 2 users');
+        $this->assertCount(2, $collection->getIterator(), 'Should return 2');
+
+        $usersCount = 0;
 
         foreach ($collection->getIterator() as $users) {
             foreach ($users as $entry) {
+                $usersCount++;
+
                 $this->assertInstanceOf('Spy\Timeline\Spread\Entry\EntryUnaware', $entry, 'Should return an instance of EntryUnaware');
-                $this->assertEquals('FOS\UserBundle\Entity\User', $entry->getSubjectModel());
             }
         }
+
+        $this->assertEquals(5, $usersCount / 2, 'Should return 5 users for 2 iterations');
     }
 
     /**
-     * Returns a registry mock with some datas
+     * Returns fake users
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return array
      */
-    protected function createRegistryMock()
+    protected function getFakeUsers()
     {
         $users = array();
 
-        for ($i = 1; $i < 3; $i++) {
-            $user = $this->getMockBuilder('Sonata\UserBundle\Model\User')
-                ->setMethods(array('getId'))
-                ->getMockForAbstractClass();
-            $user->expects($this->any())->method('getId')->will($this->returnValue($i));
+        for ($i = 1; $i < 6; $i++) {
+            $user = new FakeUserEntity();
+            $user->setId($i);
 
             $users[] = array($user);
         }
 
-        $query = $this->getMockBuilder('Doctrine\ORM\AbstractQuery')
-            ->setMethods(array('iterate'))
-            ->disableOriginalConstructor()
-            ->getMockForAbstractClass();
-        $query->expects($this->once())->method('iterate')->will($this->returnValue($users));
-
-        $doctrineEm = DoctrineTestHelper::createTestEntityManager();
-
-        $qb = $this->getMock('\Doctrine\ORM\QueryBuilder', array('getQuery'), array($doctrineEm));
-        $qb->expects($this->once())->method('getQuery')->will($this->returnValue($query));
-
-        $em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
-            ->disableOriginalConstructor()
-            ->setMethods(array('createQueryBuilder'))
-            ->getMock();
-        $em->expects($this->once())->method('createQueryBuilder')->will($this->returnValue($qb));
-
-        $registryMock = $this->getMock('\Symfony\Bridge\Doctrine\RegistryInterface');
-        $registryMock->expects($this->once())->method('getManager')->will($this->returnValue($em));
-
-        return $registryMock;
+        return $users;
     }
 }

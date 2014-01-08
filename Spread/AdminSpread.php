@@ -56,6 +56,20 @@ class AdminSpread implements SpreadInterface
      */
     public function process(ActionInterface $action, EntryCollection $coll)
     {
+        $users = $this->getUsers();
+
+        foreach ($users as $user) {
+            $coll->add(new EntryUnaware($this->userClass, $user[0]->getId()), 'SONATA_ADMIN');
+        }
+    }
+
+    /**
+     * Returns corresponding users
+     *
+     * @return \Doctrine\ORM\Internal\Hydration\IterableResult
+     */
+    protected function getUsers()
+    {
         $qb = $this->registry->getManager()->createQueryBuilder();
 
         $qb
@@ -64,8 +78,6 @@ class AdminSpread implements SpreadInterface
             ->where($qb->expr()->like("u.roles", ':roles'))
             ->setParameter('roles', '%"ROLE_SUPER_ADMIN"%');
 
-        foreach ($qb->getQuery()->iterate() as $user) {
-            $coll->add(new EntryUnaware($this->userClass, $user[0]->getId()), 'SONATA_ADMIN');
-        }
+        return $qb->getQuery()->iterate();
     }
 }
