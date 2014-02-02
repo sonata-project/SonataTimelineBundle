@@ -24,7 +24,7 @@ class SonataTimelineExtension extends \Twig_Extension
     /**
      * @param Pool $pool
      */
-    public function __construct(Pool $pool)
+    public function __construct(Pool $pool = null)
     {
         $this->pool = $pool;
     }
@@ -54,6 +54,10 @@ class SonataTimelineExtension extends \Twig_Extension
      */
     public function generateLink(ComponentInterface $component)
     {
+        if (!$this->pool) {
+            return $component->getHash();
+        }
+
         $admin = $this->pool->getAdminByClass($component->getModel());
 
         if (!$admin) {
