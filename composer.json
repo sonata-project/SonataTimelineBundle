@@ -22,9 +22,8 @@
         "sonata-project/block-bundle": "~2.2,>=2.2.1"
     },
     "autoload": {
-        "psr-0": { "Sonata\\TimelineBundle": "" }
+        "psr-4": { "Sonata\\TimelineBundle\\": "" }
     },
-    "target-dir": "Sonata/TimelineBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.2.x-dev"
