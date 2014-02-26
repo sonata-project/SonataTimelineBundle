@@ -1,7 +1,7 @@
 Installation
 ============
 
-* Add SonataNewsBundle to your vendor/bundles dir with the deps file::
+* Add SonataNewsBundle to your vendor/bundles dir with the deps file:
 
 .. code-block:: json
 
@@ -13,7 +13,7 @@ Installation
     }
 
 
-* Add SonataNewsBundle to your application kernel::
+* Add SonataNewsBundle to your application kernel:
 
 .. code-block:: php
 
@@ -31,7 +31,7 @@ Installation
         );
     }
 
-* Create a configuration file : ``sonata_timeline.yml``::
+* Create a configuration file : ``sonata_timeline.yml``:
 
 .. code-block:: yaml
 
@@ -57,7 +57,7 @@ Installation
     sonata_timeline:
         manager_type: orm
 
-* import the ``sonata_timelize.yml`` file in the ``config.yml`` file ::
+* import the ``sonata_timelize.yml`` file in the ``config.yml`` file:
 
 .. code-block:: yaml
 
@@ -66,12 +66,13 @@ Installation
         - { resource: sonata_timeline.yml }
 
 
-* Run the easy-extends command::
+* Run the easy-extends command:
 
-    php app/console sonata:easy-extends:generate SonataTimelineBundle
+.. code-block:: bash
 
-* If the bundle is generated in /app cut application folder and paste it in src/
-* Enable the new bundles::
+    php app/console sonata:easy-extends:generate SonataTimelineBundle -d src
+
+* Enable the new bundle:
 
 .. code-block:: php
 
@@ -86,14 +87,16 @@ Installation
     }
 
 
-* enable the block in the admin bundle
+* enable the block in the admin bundle:
+
+.. code-block:: yaml
 
     sonata_block:
         # ... other configuration options
 
         blocks:
             # ... other blocks
-            
+
             sonata.timeline.block.timeline:
 
     sonata_admin:
@@ -102,5 +105,5 @@ Installation
         dashboard:
             blocks:
                 # ... other blocks
-                
+
                 - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
