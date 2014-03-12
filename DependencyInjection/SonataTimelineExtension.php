@@ -30,7 +30,7 @@ class SonataTimelineExtension extends Extension
     /**
      * Loads the url shortener configuration.
      *
-     * @param array            $config    An array of configuration settings
+     * @param array            $configs   An array of configuration settings
      * @param ContainerBuilder $container A ContainerBuilder instance
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -61,7 +61,7 @@ class SonataTimelineExtension extends Extension
     {
         if ('orm' === $config['manager_type']) {
             $modelType = 'Entity';
-        }  elseif ('mongodb' === $config['manager_type']) {
+        } elseif ('mongodb' === $config['manager_type']) {
             $modelType = 'Document';
         }
 
