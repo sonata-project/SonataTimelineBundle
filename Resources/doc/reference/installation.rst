@@ -1,7 +1,7 @@
 Installation
 ============
 
-* Add SonataNewsBundle to your vendor/bundles dir with the deps file:
+* Add SonataNewsBundle to your vendor/bundles dir via composer
 
 .. code-block:: json
 
@@ -57,7 +57,7 @@ Installation
     sonata_timeline:
         manager_type: orm
 
-* import the ``sonata_timelize.yml`` file in the ``config.yml`` file:
+* import the ``sonata_timeline.yml`` file in the ``config.yml`` file:
 
 .. code-block:: yaml
 
