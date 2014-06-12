@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>actions.sonata.admin.create</source>
+                <target>%subject% hat %target% erstellt</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>actions.sonata.admin.update</source>
+                <target>%subject% hat %target% aktualisiert</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>actions.sonata.admin.delete</source>
+                <target>%subject% hat %target% gelöscht</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>actions.icon.sonata.admin.create</source>
+                <target>fa fa-plus-circle bg-green</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>actions.icon.sonata.admin.update</source>
+                <target>fa fa-save bg-blue</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>actions.icon.sonata.admin.delete</source>
+                <target>fa fa-minus-circle bg-red</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
