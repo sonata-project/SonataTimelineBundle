@@ -21,4 +21,32 @@ use Spy\TimelineBundle\Entity\Component as BaseComponent;
  */
 class Component extends BaseComponent
 {
+	/**
+	 * @var string
+	 */
+	protected $adminCode;
+	
+	
+	/**
+	 * Set adminCode
+	 *
+	 * @param string $adminCode
+	 * @return Component
+	 */
+	public function setAdminCode($adminCode)
+	{
+		$this->adminCode = $adminCode;
+	
+		return $this;
+	}
+	
+	/**
+	 * Get adminCode
+	 *
+	 * @return string
+	 */
+	public function getAdminCode()
+	{
+		return $this->adminCode;
+	}
 }

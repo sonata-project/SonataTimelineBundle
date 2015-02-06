@@ -49,7 +49,9 @@ class AdminExtension extends BaseAdminExtension
      */
     protected function getTarget(AdminInterface $admin, $object)
     {
-        return $this->actionManager->findOrCreateComponent($admin->getClass(), $admin->id($object));
+        $component = $this->actionManager->findOrCreateComponent($admin->getClass(), $admin->id($object));
+    	$component->setAdminCode($admin->getCode());
+    	return $component;
     }
 
     /**

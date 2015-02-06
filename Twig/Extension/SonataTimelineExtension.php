@@ -58,7 +58,12 @@ class SonataTimelineExtension extends \Twig_Extension
             return $component->getHash();
         }
 
-        $admin = $this->pool->getAdminByClass($component->getModel());
+    if (is_null($component->getAdminCode())) {
+        	$admin = $this->pool->getAdminByClass($component->getModel());
+        }
+        else {
+        	$admin = $this->pool->getAdminByAdminCode($component->getAdminCode());
+        }
 
         if (!$admin) {
             return $component->getHash();
