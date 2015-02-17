@@ -107,3 +107,10 @@ Installation
                 # ... other blocks
 
                 - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+
+
+* Run the Doctrine update command:
+
+.. code-block:: bash
+    
+    php app/console doctrine:schema:update --force
