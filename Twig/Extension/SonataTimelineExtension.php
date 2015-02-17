@@ -12,6 +12,7 @@
 namespace Sonata\TimelineBundle\Twig\Extension;
 
 use Sonata\AdminBundle\Admin\Pool;
+use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 
 class SonataTimelineExtension extends \Twig_Extension
@@ -52,13 +53,13 @@ class SonataTimelineExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function generateLink(ComponentInterface $component)
+    public function generateLink(ComponentInterface $component, ActionInterface $action = null)
     {
         if (!$this->pool) {
             return $component->getHash();
         }
 
-        $admin = $this->pool->getAdminByClass($component->getModel());
+        $admin = $this->getAdmin($component, $action);
 
         if (!$admin) {
             return $component->getHash();
@@ -68,5 +69,25 @@ class SonataTimelineExtension extends \Twig_Extension
             $admin->generateObjectUrl('edit', $component->getData()),
             $admin->toString($component->getData())
         );
+    }
+
+    /**
+     * @param ComponentInterface $component
+     *
+     * @return AdminInterface
+     */
+    protected function getAdmin(ComponentInterface $component, ActionInterface $action = null)
+    {
+        if ($action && $adminComponent = $action->getComponent('admin_code')) {
+            return $this->pool->getAdminByAdminCode($adminComponent);
+        }
+
+        try {
+            return $this->pool->getAdminByClass($component->getModel());
+        } catch(\RuntimeException $e) {
+
+        }
+
+        return false;
     }
 }
