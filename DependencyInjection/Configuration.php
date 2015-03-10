@@ -45,11 +45,22 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->arrayNode('class')
+                    ->beforeNormalization()
+                        ->ifTrue(function ($v) { return isset($v['actionComponent']); })
+                        ->then(function ($v) {
+
+                            $v['action_component'] = $v['actionComponent'];
+                            unset($v['actionComponent']);
+
+                            return $v;
+                        })
+                    ->end()
                     ->children()
-                        ->scalarNode('component')->cannotBeEmpty()->end()
-                        ->scalarNode('actionComponent')->cannotBeEmpty()->end()
-                        ->scalarNode('action')->cannotBeEmpty()->end()
-                        ->scalarNode('timeline')->cannotBeEmpty()->end()
+                        ->scalarNode('component')->defaultValue('%spy_timeline.class.component%')->cannotBeEmpty()->end()
+                        ->scalarNode('actionComponent')->end()
+                        ->scalarNode('action_component')->defaultValue('%spy_timeline.class.action_component%')->cannotBeEmpty()->end() // fix the actionComponent deprecated parameter ...
+                        ->scalarNode('action')->defaultValue('%spy_timeline.class.action%')->cannotBeEmpty()->end()
+                        ->scalarNode('timeline')->defaultValue('%spy_timeline.class.timeline%')->cannotBeEmpty()->end()
                     ->end()
                 ->end()
             ->end();

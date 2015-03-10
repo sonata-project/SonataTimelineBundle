@@ -67,7 +67,7 @@ class SonataTimelineExtension extends Extension
 
         $defaultConfig['class']['timeline']         = sprintf('Application\\Sonata\\TimelineBundle\\%s\\Timeline', $modelType);
         $defaultConfig['class']['action']           = sprintf('Application\\Sonata\\TimelineBundle\\%s\\Action', $modelType);
-        $defaultConfig['class']['actionComponent']  = sprintf('Application\\Sonata\\TimelineBundle\\%s\\ActionComponent', $modelType);
+        $defaultConfig['class']['action_component'] = sprintf('Application\\Sonata\\TimelineBundle\\%s\\ActionComponent', $modelType);
         $defaultConfig['class']['component']        = sprintf('Application\\Sonata\\TimelineBundle\\%s\\Component', $modelType);
 
         return array_replace_recursive($defaultConfig, $config);
@@ -89,7 +89,7 @@ class SonataTimelineExtension extends Extension
 
         $container->setParameter(sprintf('sonata.timeline.admin.timeline.%s',$modelType),           $config['class']['timeline']);
         $container->setParameter(sprintf('sonata.timeline.admin.action.%s', $modelType),            $config['class']['action']);
-        $container->setParameter(sprintf('sonata.timeline.admin.actionComponent.%s', $modelType),   $config['class']['actionComponent']);
+        $container->setParameter(sprintf('sonata.timeline.admin.action_component.%s', $modelType),  $config['class']['action_component']);
         $container->setParameter(sprintf('sonata.timeline.admin.component.%s', $modelType),         $config['class']['component']);
     }
 
@@ -139,7 +139,7 @@ class SonataTimelineExtension extends Extension
 
         $collector->addAssociation($config['class']['action'], 'mapOneToMany', array(
              'fieldName' => 'actionComponents',
-             'targetEntity' => $config['class']['actionComponent'],
+             'targetEntity' => $config['class']['action_component'],
              'cascade' => array(
                  1 => 'persist',
              ),
@@ -153,7 +153,7 @@ class SonataTimelineExtension extends Extension
              'mappedBy' => 'action',
         ));
 
-        $collector->addAssociation($config['class']['actionComponent'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', array(
             'fieldName' => 'action',
             'targetEntity' => $config['class']['action'],
             'cascade' => array(),
@@ -169,7 +169,7 @@ class SonataTimelineExtension extends Extension
             'orphanRemoval' => false,
         ));
 
-        $collector->addAssociation($config['class']['actionComponent'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', array(
             'fieldName' => 'component',
             'targetEntity' => $config['class']['component'],
             'cascade' => array(),

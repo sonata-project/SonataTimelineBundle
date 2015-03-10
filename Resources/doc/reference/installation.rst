@@ -55,7 +55,13 @@ Installation
                     - spy_timeline.filter.data_hydrator.locator.doctrine_orm
 
     sonata_timeline:
-        manager_type: orm
+        manager_type:         orm
+        class:
+            timeline:         %spy_timeline.class.timeline%
+            action:           %spy_timeline.class.action%
+            component:        %spy_timeline.class.component%
+            action_component: %spy_timeline.class.action_component%
+
 
 * import the ``sonata_timeline.yml`` file in the ``config.yml`` file:
 
