@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony SonataTimelineBundle ~ integrate SpyTimelineBundle into Sonata",
     "keywords": ["sonata", "date", "time", "wall"],
-    "homepage": "http://sonata-project.org/bundles/timeline",
+    "homepage": "https://sonata-project.org/bundles/timeline",
     "license": "MIT",
     "authors": [
         {
