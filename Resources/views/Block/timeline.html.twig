@@ -61,7 +61,7 @@ file that was distributed with this source code.
                                 <i class="{{ icon|trans({}, "SonataTimelineBundle") }}"></i>
                                 <div class="timeline-item" style="background: #f3f4f5;">
                                     <span class="time"><i class="fa fa-clock-o"></i> {{ entry.createdAt|format_time }}</span>
-                                    <h3 class="timeline-header" style="border-bottom: none;">{{ verb|trans({'%subject%': subject_text, '%target%': target_text}, "SonataTimelineBundle")|raw }}</h3>
+                                    <div class="timeline-body" style="border-bottom: none;">{{ verb|trans({'%subject%': subject_text, '%target%': target_text}, "SonataTimelineBundle")|raw }}</div>
                                 </div>
                             </li>
                         {% else %}
