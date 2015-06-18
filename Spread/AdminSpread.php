@@ -14,8 +14,8 @@ namespace Sonata\TimelineBundle\Spread;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Spread\Entry\EntryCollection;
-use Spy\Timeline\Spread\SpreadInterface;
 use Spy\Timeline\Spread\Entry\EntryUnaware;
+use Spy\Timeline\Spread\SpreadInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class AdminSpread implements SpreadInterface
@@ -27,7 +27,7 @@ class AdminSpread implements SpreadInterface
     );
 
     protected $supportedRoles = array(
-        'ROLE_SUPER_ADMIN'
+        'ROLE_SUPER_ADMIN',
     );
 
     protected $registry;
@@ -64,7 +64,7 @@ class AdminSpread implements SpreadInterface
     }
 
     /**
-     * Returns corresponding users
+     * Returns corresponding users.
      *
      * @return \Doctrine\ORM\Internal\Hydration\IterableResult
      */
@@ -75,7 +75,7 @@ class AdminSpread implements SpreadInterface
         $qb
             ->select('u')
             ->from($this->userClass, 'u')
-            ->where($qb->expr()->like("u.roles", ':roles'))
+            ->where($qb->expr()->like('u.roles', ':roles'))
             ->setParameter('roles', '%"ROLE_SUPER_ADMIN"%');
 
         return $qb->getQuery()->iterate();

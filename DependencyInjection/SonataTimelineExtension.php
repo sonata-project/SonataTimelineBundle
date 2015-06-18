@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -10,23 +11,20 @@
 
 namespace Sonata\TimelineBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Definition\Processor;
-use Symfony\Component\HttpKernel\Kernel;
 use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * SonataTimelineExtension
+ * SonataTimelineExtension.
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class SonataTimelineExtension extends Extension
 {
-
     /**
      * Loads the url shortener configuration.
      *
@@ -76,8 +74,6 @@ class SonataTimelineExtension extends Extension
     /**
      * @param array                                                   $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     *
-     * @return void
      */
     public function configureClass($config, ContainerBuilder $container)
     {
@@ -87,7 +83,7 @@ class SonataTimelineExtension extends Extension
             $modelType = 'document';
         }
 
-        $container->setParameter(sprintf('sonata.timeline.admin.timeline.%s',$modelType),           $config['class']['timeline']);
+        $container->setParameter(sprintf('sonata.timeline.admin.timeline.%s', $modelType),           $config['class']['timeline']);
         $container->setParameter(sprintf('sonata.timeline.admin.action.%s', $modelType),            $config['class']['action']);
         $container->setParameter(sprintf('sonata.timeline.admin.action_component.%s', $modelType),  $config['class']['action_component']);
         $container->setParameter(sprintf('sonata.timeline.admin.component.%s', $modelType),         $config['class']['component']);
@@ -107,14 +103,14 @@ class SonataTimelineExtension extends Extension
         $collector = DoctrineCollector::getInstance();
 
         $collector->addAssociation($config['class']['timeline'], 'mapManyToOne', array(
-            'fieldName' => 'action',
+            'fieldName'    => 'action',
             'targetEntity' => $config['class']['action'],
-            'cascade' => array(),
-            'mappedBy' => NULL,
-            'inversedBy' => 'timelines',
-            'joinColumns' => array(
+            'cascade'      => array(),
+            'mappedBy'     => null,
+            'inversedBy'   => 'timelines',
+            'joinColumns'  => array(
                 array(
-                    'name' => 'action_id',
+                    'name'                 => 'action_id',
                     'referencedColumnName' => 'id',
                 ),
             ),
@@ -122,63 +118,63 @@ class SonataTimelineExtension extends Extension
         ));
 
         $collector->addAssociation($config['class']['timeline'], 'mapManyToOne', array(
-            'fieldName' => 'subject',
+            'fieldName'    => 'subject',
             'targetEntity' => $config['class']['component'],
-            'cascade' => array(),
-            'mappedBy' => NULL,
-            'inversedBy' => NULL,
-            'joinColumns' => array(
+            'cascade'      => array(),
+            'mappedBy'     => null,
+            'inversedBy'   => null,
+            'joinColumns'  => array(
                 array(
-                    'name' => 'subject_id',
+                    'name'                 => 'subject_id',
                     'referencedColumnName' => 'id',
-                    'onDelete' => 'CASCADE',
+                    'onDelete'             => 'CASCADE',
                 ),
             ),
             'orphanRemoval' => false,
         ));
 
         $collector->addAssociation($config['class']['action'], 'mapOneToMany', array(
-             'fieldName' => 'actionComponents',
+             'fieldName'    => 'actionComponents',
              'targetEntity' => $config['class']['action_component'],
-             'cascade' => array(
+             'cascade'      => array(
                  1 => 'persist',
              ),
              'mappedBy' => 'action',
         ));
 
         $collector->addAssociation($config['class']['action'], 'mapOneToMany', array(
-             'fieldName' => 'timelines',
+             'fieldName'    => 'timelines',
              'targetEntity' => $config['class']['timeline'],
-             'cascade' => array(),
-             'mappedBy' => 'action',
+             'cascade'      => array(),
+             'mappedBy'     => 'action',
         ));
 
         $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', array(
-            'fieldName' => 'action',
+            'fieldName'    => 'action',
             'targetEntity' => $config['class']['action'],
-            'cascade' => array(),
-            'mappedBy' => NULL,
-            'inversedBy' => 'actionComponents',
-            'joinColumns' => array(
+            'cascade'      => array(),
+            'mappedBy'     => null,
+            'inversedBy'   => 'actionComponents',
+            'joinColumns'  => array(
                 array(
-                    'name' => 'action_id',
+                    'name'                 => 'action_id',
                     'referencedColumnName' => 'id',
-                    'onDelete' => 'CASCADE',
+                    'onDelete'             => 'CASCADE',
                 ),
             ),
             'orphanRemoval' => false,
         ));
 
         $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', array(
-            'fieldName' => 'component',
+            'fieldName'    => 'component',
             'targetEntity' => $config['class']['component'],
-            'cascade' => array(),
-            'mappedBy' => NULL,
-            'joinColumns' => array(
+            'cascade'      => array(),
+            'mappedBy'     => null,
+            'joinColumns'  => array(
                 array(
-                    'name' => 'component_id',
+                    'name'                 => 'component_id',
                     'referencedColumnName' => 'id',
-                    'onDelete' => 'CASCADE',
+                    'onDelete'             => 'CASCADE',
                 ),
             ),
             'orphanRemoval' => false,

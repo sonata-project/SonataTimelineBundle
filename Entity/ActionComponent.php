@@ -17,6 +17,7 @@ use Spy\TimelineBundle\Entity\ActionComponent as BaseActionComponent;
  * ActionComponent entity for Doctrine ORM.
  *
  * @uses BaseActionComponent
+ *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
 class ActionComponent extends BaseActionComponent

@@ -84,8 +84,7 @@ class SonataTimelineExtension extends \Twig_Extension
 
         try {
             return $this->pool->getAdminByClass($component->getModel());
-        } catch(\RuntimeException $e) {
-
+        } catch (\RuntimeException $e) {
         }
 
         return false;
