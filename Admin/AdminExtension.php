@@ -13,9 +13,9 @@ namespace Sonata\TimelineBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AdminExtension as BaseAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ComponentInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class AdminExtension extends BaseAdminExtension
 {
@@ -70,9 +70,9 @@ class AdminExtension extends BaseAdminExtension
     public function postUpdate(AdminInterface $admin, $object)
     {
         $this->create($this->getSubject(), 'sonata.admin.update', array(
-            'target' => $this->getTarget($admin, $object),
+            'target'      => $this->getTarget($admin, $object),
             'target_text' => $admin->toString($object),
-            'admin_code' => $admin->getCode()
+            'admin_code'  => $admin->getCode(),
         ));
     }
 
@@ -82,9 +82,9 @@ class AdminExtension extends BaseAdminExtension
     public function postPersist(AdminInterface $admin, $object)
     {
         $this->create($this->getSubject(), 'sonata.admin.create', array(
-            'target' => $this->getTarget($admin, $object),
+            'target'      => $this->getTarget($admin, $object),
             'target_text' => $admin->toString($object),
-            'admin_code' => $admin->getCode()
+            'admin_code'  => $admin->getCode(),
         ));
     }
 
@@ -95,7 +95,7 @@ class AdminExtension extends BaseAdminExtension
     {
         $this->create($this->getSubject(), 'sonata.admin.delete', array(
             'target_text' => $admin->toString($object),
-            'admin_code' => $admin->getCode()
+            'admin_code'  => $admin->getCode(),
         ));
     }
 }

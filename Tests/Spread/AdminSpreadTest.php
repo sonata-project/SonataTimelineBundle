@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -13,17 +14,16 @@ namespace Sonata\TimelineBundle\Tests\Spread;
 use Sonata\TimelineBundle\Spread\AdminSpread;
 use Spy\Timeline\Model\Action;
 use Spy\Timeline\Spread\Entry\EntryCollection;
-use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 
 /**
- * Class FakeUserEntity
+ * Class FakeUserEntity.
  *
  * This is a fake entity class
  */
 class FakeUserEntity
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -45,7 +45,7 @@ class FakeUserEntity
 }
 
 /**
- * Class AdminSpreadTest
+ * Class AdminSpreadTest.
  *
  * This is a unit test class for \Sonata\TimelineBundle\Spread\AdminSpread
  *
@@ -54,7 +54,7 @@ class FakeUserEntity
 class AdminSpreadTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * AdminSpread supported verbs
+     * AdminSpread supported verbs.
      *
      * @var array
      */
@@ -65,7 +65,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
     );
 
     /**
-     * Test supports() method with supported verbs and non-supported verbs
+     * Test supports() method with supported verbs and non-supported verbs.
      */
     public function testSupportsMethod()
     {
@@ -88,7 +88,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test process() method in order to test that collection is well completed
+     * Test process() method in order to test that collection is well completed.
      */
     public function testProcessMethod()
     {
@@ -110,7 +110,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
 
         foreach ($collection->getIterator() as $users) {
             foreach ($users as $entry) {
-                $usersCount++;
+                ++$usersCount;
 
                 $this->assertInstanceOf('Spy\Timeline\Spread\Entry\EntryUnaware', $entry, 'Should return an instance of EntryUnaware');
             }
@@ -120,7 +120,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Returns fake users
+     * Returns fake users.
      *
      * @return array
      */
@@ -128,7 +128,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
     {
         $users = array();
 
-        for ($i = 1; $i < 6; $i++) {
+        for ($i = 1; $i < 6; ++$i) {
             $user = new FakeUserEntity();
             $user->setId($i);
 

@@ -11,24 +11,20 @@
 
 namespace Sonata\TimelineBundle\Block;
 
-
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
 use Spy\Timeline\Model\TimelineInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
-
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Validator\ErrorElement;
-
-use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
- *
  * @author     Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class TimelineBlock extends BaseBlockService
@@ -82,7 +78,7 @@ class TimelineBlock extends BaseBlockService
             'context'  => $blockContext,
             'settings' => $blockContext->getSettings(),
             'block'    => $blockContext->getBlock(),
-            'entries'  => $entries
+            'entries'  => $entries,
         ), $response);
     }
 
@@ -103,7 +99,7 @@ class TimelineBlock extends BaseBlockService
             'keys' => array(
                 array('title', 'text', array('required' => false)),
                 array('max_per_page', 'integer', array('required' => true)),
-            )
+            ),
         ));
     }
 
