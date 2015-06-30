@@ -13,7 +13,7 @@ Installation
     }
 
 
-* Add SonataTimelineBundle and SpyTimelineBundle to your AppKernell:
+* Add SonataTimelineBundle and SpyTimelineBundle to your AppKernel:
 
 .. code-block:: php
 
