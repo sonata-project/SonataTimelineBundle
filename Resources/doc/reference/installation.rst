@@ -1,7 +1,7 @@
 Installation
 ============
 
-* Add SonataNewsBundle to your vendor/bundles dir via composer
+* Add SonataTimelineBundle to your vendor/bundles dir via composer
 
 .. code-block:: json
 
@@ -13,7 +13,7 @@ Installation
     }
 
 
-* Add SonataNewsBundle to your application kernel:
+* Add SonataTimelineBundle and SpyTimelineBundle to your AppKernell:
 
 .. code-block:: php
 
