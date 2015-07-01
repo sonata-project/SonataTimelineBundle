@@ -92,6 +92,12 @@ Installation
         );
     }
 
+* update your database schema:
+
+.. code-block:: bash
+
+    app/console doctrine:schema:update --force
+    
 
 * enable the block in the admin bundle:
 
