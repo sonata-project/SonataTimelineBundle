@@ -65,7 +65,7 @@ file that was distributed with this source code.
                                 </div>
                             </li>
                         {% else %}
-                            No action for now ...
+                            {{ 'no_action'|trans({}, "SonataTimelineBundle") }}
                         {% endfor %}
                     </ul>
                 </div>

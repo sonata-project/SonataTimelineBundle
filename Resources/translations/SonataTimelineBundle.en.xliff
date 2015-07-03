@@ -26,6 +26,10 @@
                 <source>actions.icon.sonata.admin.delete</source>
                 <target>fa fa-minus-circle bg-red</target>
             </trans-unit>
+            <trans-unit id="7">
+                <source>no_action</source>
+                <target>No action for now ...</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
