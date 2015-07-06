@@ -37,10 +37,10 @@ class AdminSpread implements SpreadInterface
     /**
      * @param UserManagerInterface $userManager
      */
-    public function __construct(RegistryInterface $registry, $userClass)
+    public function __construct(RegistryInterface $registry, $userManager)
     {
         $this->registry = $registry;
-        $this->userClass = $userClass;
+        $this->userClass = $userManager;
     }
 
     /**
@@ -54,12 +54,12 @@ class AdminSpread implements SpreadInterface
     /**
      * {@inheritdoc}
      */
-    public function process(ActionInterface $action, EntryCollection $coll)
+    public function process(ActionInterface $action, EntryCollection $collection)
     {
         $users = $this->getUsers();
 
         foreach ($users as $user) {
-            $coll->add(new EntryUnaware($this->userClass, $user[0]->getId()), 'SONATA_ADMIN');
+            $collection->add(new EntryUnaware($this->userClass, $user[0]->getId()), 'SONATA_ADMIN');
         }
     }
 
