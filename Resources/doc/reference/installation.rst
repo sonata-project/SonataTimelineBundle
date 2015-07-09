@@ -119,3 +119,6 @@ Installation
                 # ... other blocks
 
                 - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+
+                # custom title - default: "Latest Actions"
+                - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25, title: "My Timeline Block" }}
