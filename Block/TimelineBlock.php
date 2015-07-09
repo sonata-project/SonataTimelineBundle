@@ -97,8 +97,12 @@ class TimelineBlock extends BaseBlockService
     {
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
-                array('title', 'text', array('required' => false)),
-                array('max_per_page', 'integer', array('required' => true)),
+                array('title', 'text', array(
+                    'required' => false,
+                )),
+                array('max_per_page', 'integer', array(
+                    'required' => true,
+                )),
             ),
         ));
     }
