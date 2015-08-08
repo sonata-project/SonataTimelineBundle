@@ -65,10 +65,17 @@ class SonataTimelineExtension extends \Twig_Extension
             return $component->getHash();
         }
 
-        return sprintf('<a href="%s">%s</a>',
-            $admin->generateObjectUrl('edit', $component->getData()),
-            $admin->toString($component->getData())
-        );
+        foreach (array('edit', 'show') as $mode) {
+            if ($admin->hasRoute($mode) && $admin->isGranted(strtoupper($mode))) {
+                return sprintf(
+                    '<a href="%s">%s</a>',
+                    $admin->generateObjectUrl($mode, $component->getData()),
+                    $admin->toString($component->getData())
+                );
+            }
+        }
+
+        return $admin->toString($component->getData());
     }
 
     /**
