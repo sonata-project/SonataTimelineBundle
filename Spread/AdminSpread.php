@@ -11,7 +11,6 @@
 
 namespace Sonata\TimelineBundle\Spread;
 
-use FOS\UserBundle\Model\UserManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Spread\Entry\EntryUnaware;
@@ -32,15 +31,12 @@ class AdminSpread implements SpreadInterface
 
     protected $registry;
 
-    protected $userClass;
-
     /**
-     * @param UserManagerInterface $userManager
+     * @param RegistryInterface $registry
      */
-    public function __construct(RegistryInterface $registry, $userManager)
+    public function __construct(RegistryInterface $registry)
     {
         $this->registry = $registry;
-        $this->userClass = $userManager;
     }
 
     /**
@@ -59,7 +55,7 @@ class AdminSpread implements SpreadInterface
         $users = $this->getUsers();
 
         foreach ($users as $user) {
-            $collection->add(new EntryUnaware($this->userClass, $user[0]->getId()), 'SONATA_ADMIN');
+            $collection->add(new EntryUnaware(get_class($user[0]), $user[0]->getId()), 'SONATA_ADMIN');
         }
     }
 

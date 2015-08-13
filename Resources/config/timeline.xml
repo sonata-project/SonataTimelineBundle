@@ -16,7 +16,6 @@
             <tag name="spy_timeline.spread"/>
 
             <argument type="service" id="doctrine" />
-            <argument>%sonata.user.admin.user.entity%</argument>
         </service>
 
         <service id="sonata.timeline.block.timeline" class="Sonata\TimelineBundle\Block\TimelineBlock">
