@@ -43,15 +43,15 @@ file that was distributed with this source code.
                             {% if subject.data %}
                                 {% set subject_text = sonata_timeline_generate_link(subject, entry) %}
                             {% else %}
-                                {% set subject_text = '<abbr title="reference: ' ~  subject.hash ~ '">element deleted</abbr>' %}
+                                {% set subject_text = '<abbr title="' ~ 'element_reference_deleted'|trans({'%reference%': target.hash}, "SonataTimelineBundle") ~ '">' ~ 'element_deleted'|trans({}, "SonataTimelineBundle") ~ '</abbr>' %}
                             {% endif %}
 
                             {% if target.data is defined and target.data is not empty %}
                                 {% set target_text = sonata_timeline_generate_link(target, entry) %}
                             {% elseif target_text_component %}
-                                {% set target_text = '<abbr title="Element Deleted">'~target_text_component~'</abbr>' %}
+                                {% set target_text = '<abbr title="' ~ 'element_deleted'|trans({}, "SonataTimelineBundle") ~ '">'~target_text_component~'</abbr>' %}
                             {% else %}
-                                {% set target_text = '<abbr title="reference: ' ~  target.hash ~ '">element deleted</abbr>' %}
+                                {% set target_text = '<abbr title="' ~ 'element_reference_deleted'|trans({'%reference%': target.hash}, "SonataTimelineBundle") ~ '">' ~ 'element_deleted'|trans({}, "SonataTimelineBundle") ~ '</abbr>' %}
                             {% endif %}
 
                             {% set verb = "actions."~entry.verb %}

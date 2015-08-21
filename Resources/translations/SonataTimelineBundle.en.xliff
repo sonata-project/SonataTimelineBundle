@@ -30,6 +30,14 @@
                 <source>no_action</source>
                 <target>No action for now ...</target>
             </trans-unit>
+            <trans-unit id="8">
+                <source>element_deleted</source>
+                <target>Element deleted</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>element_reference_deleted</source>
+                <target>Reference '%reference%' deleted</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

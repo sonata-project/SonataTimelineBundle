@@ -30,6 +30,14 @@
                 <source>no_action</source>
                 <target>Noch keine Aktion ...</target>
             </trans-unit>
+            <trans-unit id="8">
+                <source>element_deleted</source>
+                <target>Element wurde gelöscht</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>element_reference_deleted</source>
+                <target>Referenz '%reference%' wurde gelöscht</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
