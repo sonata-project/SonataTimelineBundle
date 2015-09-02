@@ -28,15 +28,15 @@
             </trans-unit>
             <trans-unit id="7">
                 <source>no_action</source>
-                <target>no_action</target>
+                <target>Aucune action actuellement...</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>element_deleted</source>
-                <target>element_deleted</target>
+                <target>Elément supprimé</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>element_reference_deleted</source>
-                <target>element_reference_deleted</target>
+                <target>Référence '%reference%' supprimée</target>
             </trans-unit>
         </body>
     </file>
