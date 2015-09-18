@@ -12,7 +12,7 @@ file that was distributed with this source code.
 
 {% block block %}
     <div class="box box-primary">
-        {% if settings.title %}
+        {% if settings.title is not empty %}
             <div class="box-header with-border">
                 <h4 class="box-title">
                     <i class="fa fa-clock-o fa-fw"></i> {{ settings.title }}
