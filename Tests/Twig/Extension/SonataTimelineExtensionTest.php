@@ -36,9 +36,9 @@ class SonataTimelineExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->admin = $this->getMock('Sonata\AdminBundle\Admin\AdminInterface', array('hasRoute', 'isGranted', 'generateObjectUrl', 'generateUrl', 'toString'));
+        $this->admin = $this->getMock('Sonata\AdminBundle\Admin\AdminInterface');
 
-        $this->pool = $this->getMock('Sonata\AdminBundle\Admin\Pool', array('getAdminByClass'));
+        $this->pool = $this->getMockBuilder('Sonata\AdminBundle\Admin\Pool')->disableOriginalConstructor()->getMock();
         $this->pool->expects($this->any())
             ->method('getAdminByClass')
             ->with($this->equalTo('Acme\DemoBundle\Model\Demo'))
