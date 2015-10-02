@@ -1,8 +1,8 @@
 Timeline Bundle
 ===============
 
-The ``SonataTimelineBundle`` integrates the ``SpyTimelineBundle`` into Sonata. Timeline allows to create an action wall
-for a user or a group of user. The current implementation integrate the basic features of the ``SpyTimelineBundle``:
+The ``SonataTimelineBundle`` integrates the ``SpyTimelineBundle`` into ``SonataAdmin``. Timeline allows to create an action wall
+for a user or a group of users. The current implementation integrate the basic features of the ``SpyTimelineBundle``:
 
  - doctrine's models with ``SonataEasyExtends``
  - a TimelineBlock for admin action only
@@ -17,7 +17,6 @@ for a user or a group of user. The current implementation integrate the basic fe
     This is a work in progress, change may occurs in order to tweak performance issues, configuration options, or the
     rendering workflow.
 
-
 Reference Guide
 ---------------
 
@@ -26,3 +25,4 @@ Reference Guide
    :numbered:
 
    reference/installation
+   reference/configuration

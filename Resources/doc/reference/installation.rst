@@ -1,124 +1,154 @@
+.. index::
+    single: Installation
+    single: Configuration
+
 Installation
 ============
 
-* Add SonataTimelineBundle to your vendor/bundles dir via composer
+The easiest way to install ``SonataTimelineBundle`` is to require it with Composer:
 
-.. code-block:: json
+.. code-block:: bash
 
-    //composer.json
-    "require": {
-    //...
-        "sonata-project/timeline-bundle": "~2.2@dev",
-    //...
-    }
+    $ php composer.phar require sonata-project/timeline-bundle
 
+Alternatively, you could add a dependency into your ``composer.json`` file directly.
 
-* Add SonataTimelineBundle and SpyTimelineBundle to your AppKernel:
+.. note::
+
+    This will install the SpyTimelineBundle_, too.
+
+Now, enable the bundle in the kernel:
 
 .. code-block:: php
 
     <?php
-
     // app/AppKernel.php
+
     public function registerBundles()
     {
         return array(
             // ...
-            new Spy\TimelineBundle\SpyTimelineBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
+            // ...
             new Sonata\TimelineBundle\SonataTimelineBundle(),
+            new Spy\TimelineBundle\SpyTimelineBundle(),
             // ...
         );
     }
 
-* Create a configuration file : ``sonata_timeline.yml``:
+Configuration
+-------------
 
-.. code-block:: yaml
+To use the ``BlockBundle``, add the following lines to your application configuration file:
 
-    spy_timeline:
-        drivers:
-            orm:
-                object_manager: doctrine.orm.entity_manager
-                classes:
-                    query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
-                    timeline:         Application\Sonata\TimelineBundle\Entity\Timeline
-                    action:           Application\Sonata\TimelineBundle\Entity\Action
-                    component:        Application\Sonata\TimelineBundle\Entity\Component
-                    action_component: Application\Sonata\TimelineBundle\Entity\ActionComponent
+.. configuration-block::
 
-        filters:
-            data_hydrator:
-                priority:             20
-                service:              spy_timeline.filter.data_hydrator
-                filter_unresolved:    false
-                locators:
-                    - spy_timeline.filter.data_hydrator.locator.doctrine_orm
+    .. code-block:: yaml
 
-    sonata_timeline:
-        manager_type:         orm
-        class:
-            timeline:         %spy_timeline.class.timeline%
-            action:           %spy_timeline.class.action%
-            component:        %spy_timeline.class.component%
-            action_component: %spy_timeline.class.action_component%
+        # app/config/config.yml
 
+        spy_timeline:
+            drivers:
+                orm:
+                    object_manager: doctrine.orm.entity_manager
+                    classes:
+                        query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
+                        timeline:         Application\Sonata\TimelineBundle\Entity\Timeline
+                        action:           Application\Sonata\TimelineBundle\Entity\Action
+                        component:        Application\Sonata\TimelineBundle\Entity\Component
+                        action_component: Application\Sonata\TimelineBundle\Entity\ActionComponent
 
-* import the ``sonata_timeline.yml`` file in the ``config.yml`` file:
+            filters:
+                data_hydrator:
+                    priority:             20
+                    service:              spy_timeline.filter.data_hydrator
+                    filter_unresolved:    false
+                    locators:
+                        - spy_timeline.filter.data_hydrator.locator.doctrine_orm
 
-.. code-block:: yaml
+    .. code-block:: yaml
 
-    imports:
-        #...
-        - { resource: sonata_timeline.yml }
+        # app/config/config.yml
 
+        sonata_timeline:
+            manager_type:         orm
+            class:
+                timeline:         %spy_timeline.class.timeline%
+                action:           %spy_timeline.class.action%
+                component:        %spy_timeline.class.component%
+                action_component: %spy_timeline.class.action_component%
 
-* Run the easy-extends command:
+Extend the Bundle
+-----------------
+
+At this point, the bundle is usable, but not quite ready yet. You need to
+generate the correct entities for the timeline:
 
 .. code-block:: bash
 
-    php app/console sonata:easy-extends:generate SonataTimelineBundle -d src
+    $ php app/console sonata:easy-extends:generate SonataTimelineBundle -dest=src
 
-* Enable the new bundle:
+If you don't specify the ``--dest`` parameter, the files are generated in ``app/Application/Sonata/...```.
+
+.. note::
+
+    The command will generate domain objects in an ``Application`` namespace.
+    So you can point entities associations to a global and common namespace.
+    This will make entities sharing very easily as your models are accessible
+    through a global namespace. For instance the action will be
+    ``Application\Sonata\TimelineBundle\Entity\Action``.
+
+Enable the extended Bundle
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: php
 
+    <?php
     // app/AppKernel.php
+
     public function registerBundles()
     {
         return array(
             // ...
-            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle() // easy extends integration
+
+            // Application Bundles
+            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(),
+
             // ...
         );
     }
 
-* update your database schema:
+Update the Database Schema
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
-    app/console doctrine:schema:update --force
-    
+    $ app/console doctrine:schema:update --force
 
-* enable the block in the admin bundle:
+Enable the Timeline Block
+-------------------------
 
-.. code-block:: yaml
+.. configuration-block::
 
-    sonata_block:
-        # ... other configuration options
+    .. code-block:: yaml
 
-        blocks:
-            # ... other blocks
+        # app/config/config.yml
 
-            sonata.timeline.block.timeline:
-
-    sonata_admin:
-        # ... other configuration options
-
-        dashboard:
+        sonata_block:
             blocks:
-                # ... other blocks
+                # ...
+                sonata.timeline.block.timeline:
 
-                - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+    .. code-block:: yaml
 
-                # custom title - default: "Latest Actions"
-                - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25, title: "My Timeline Block" }}
+        # app/config/config.yml
+
+        sonata_admin:
+            dashboard:
+                blocks:
+                    # ...
+                    - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+
+And now, you're good to go !
+
+.. _SpyTimelineBundle: https://github.com/stephpy/timeline-bundle
