@@ -113,6 +113,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
                 ++$usersCount;
 
                 $this->assertInstanceOf('Spy\Timeline\Spread\Entry\EntryUnaware', $entry, 'Should return an instance of EntryUnaware');
+                $this->assertSame('Sonata\TimelineBundle\Tests\Spread\FakeUserEntity', $entry->getSubjectModel());
             }
         }
 
