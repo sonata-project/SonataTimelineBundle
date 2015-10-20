@@ -19,8 +19,14 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class AdminExtension extends BaseAdminExtension
 {
+    /**
+     * @var ActionManagerInterface
+     */
     protected $actionManager;
 
+    /**
+     * @var SecurityContextInterface
+     */
     protected $securityContext;
 
     /**

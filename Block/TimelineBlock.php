@@ -29,10 +29,19 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
  */
 class TimelineBlock extends BaseBlockService
 {
+    /**
+     * @var ActionManagerInterface
+     */
     protected $actionManager;
 
+    /**
+     * @var TimelineManagerInterface
+     */
     protected $timelineManager;
 
+    /**
+     * @var SecurityContextInterface
+     */
     protected $securityContext;
 
     /**

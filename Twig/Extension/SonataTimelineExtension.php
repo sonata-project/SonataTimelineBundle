@@ -11,6 +11,7 @@
 
 namespace Sonata\TimelineBundle\Twig\Extension;
 
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
@@ -49,7 +50,8 @@ class SonataTimelineExtension extends \Twig_Extension
     }
 
     /**
-     * @param ComponentInterface $component
+     * @param ComponentInterface   $component
+     * @param ActionInterface|null $action
      *
      * @return string
      */
@@ -80,6 +82,7 @@ class SonataTimelineExtension extends \Twig_Extension
 
     /**
      * @param ComponentInterface $component
+     * @param ActionInterface|null $action
      *
      * @return AdminInterface
      */

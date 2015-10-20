@@ -72,8 +72,8 @@ class SonataTimelineExtension extends Extension
     }
 
     /**
-     * @param array                                                   $config
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param array            $config
+     * @param ContainerBuilder $container
      */
     public function configureClass($config, ContainerBuilder $container)
     {

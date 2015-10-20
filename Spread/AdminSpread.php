@@ -19,18 +19,30 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class AdminSpread implements SpreadInterface
 {
+    /**
+     * @var array
+     */
     protected $supportedVerbs = array(
         'sonata.admin.create',
         'sonata.admin.update',
         'sonata.admin.delete',
     );
 
+    /**
+     * @var array
+     */
     protected $supportedRoles = array(
         'ROLE_SUPER_ADMIN',
     );
 
+    /**
+     * @var RegistryInterface
+     */
     protected $registry;
 
+    /**
+     * @var string
+     */
     protected $userClass;
 
     /**
