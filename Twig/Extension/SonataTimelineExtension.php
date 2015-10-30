@@ -81,7 +81,7 @@ class SonataTimelineExtension extends \Twig_Extension
     }
 
     /**
-     * @param ComponentInterface $component
+     * @param ComponentInterface   $component
      * @param ActionInterface|null $action
      *
      * @return AdminInterface
