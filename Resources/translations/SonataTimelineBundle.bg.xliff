@@ -38,6 +38,14 @@
                 <source>element_reference_deleted</source>
                 <target>element_reference_deleted</target>
             </trans-unit>
+            <trans-unit id="10">
+                <source>form.label_title</source>
+                <target>form.label_title</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>form.label_max_per_page</source>
+                <target>form.label_max_per_page</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

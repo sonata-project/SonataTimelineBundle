@@ -99,11 +99,14 @@ class TimelineBlock extends BaseBlockService
             'keys' => array(
                 array('title', 'text', array(
                     'required' => false,
+                    'label'    => 'form.label_title',
                 )),
                 array('max_per_page', 'integer', array(
                     'required' => true,
+                    'label'    => 'form.label_max_per_page',
                 )),
             ),
+            'translation_domain' => 'SonataTimelineBundle',
         ));
     }
 

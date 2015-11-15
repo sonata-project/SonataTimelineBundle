@@ -38,6 +38,14 @@
                 <source>element_reference_deleted</source>
                 <target>Referenz '%reference%' wurde gelöscht</target>
             </trans-unit>
+            <trans-unit id="10">
+                <source>form.label_title</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>form.label_max_per_page</source>
+                <target>Einträge pro Seite</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
