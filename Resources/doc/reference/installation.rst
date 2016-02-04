@@ -151,4 +151,27 @@ Enable the Timeline Block
 
 And now, you're good to go !
 
+Edit the Timeline Block
+-------------------------  
+
+.. configuration-block::
+
+Create a new template file here, based in the default timeline.html.twig
+
+.. code-block:: bash
+
+    src/Application/TimelineBundle/Resources/views/Block/timeline.html.twig
+
+And then edit the sonata_admin definition here, adding the "template" option.
+
+  .. code-block:: yaml
+
+        # app/config/config.yml
+
+        sonata_admin:
+            dashboard:
+                blocks:
+                    # ...
+                    - { position: center, type: sonata.timeline.block.timeline, settings: { template: 'ApplicationTimelineBundle::Block:timeline.html.twig', context: SONATA_ADMIN, max_per_page: 25}}
+
 .. _SpyTimelineBundle: https://github.com/stephpy/timeline-bundle
