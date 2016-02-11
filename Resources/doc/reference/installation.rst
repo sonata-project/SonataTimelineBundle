@@ -73,10 +73,10 @@ To use the ``BlockBundle``, add the following lines to your application configur
         sonata_timeline:
             manager_type:         orm
             class:
-                timeline:         %spy_timeline.class.timeline%
-                action:           %spy_timeline.class.action%
-                component:        %spy_timeline.class.component%
-                action_component: %spy_timeline.class.action_component%
+                timeline:         "%spy_timeline.class.timeline%"
+                action:           "%spy_timeline.class.action%"
+                component:        "%spy_timeline.class.component%"
+                action_component: "%spy_timeline.class.action_component%"
 
 Extend the Bundle
 -----------------
