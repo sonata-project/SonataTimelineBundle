@@ -101,6 +101,9 @@ class TimelineBlock extends BaseBlockService
                     'required' => false,
                     'label'    => 'form.label_title',
                 )),
+                array('icon', 'text', array(
+                    'required' => false,
+                )),
                 array('max_per_page', 'integer', array(
                     'required' => true,
                     'label'    => 'form.label_max_per_page',
@@ -126,6 +129,7 @@ class TimelineBlock extends BaseBlockService
         $resolver->setDefaults(array(
             'max_per_page'    => 10,
             'title'           => 'Latest Actions',
+            'icon'            => '<i class="fa fa-clock-o fa-fw"></i>',
             'template'        => 'SonataTimelineBundle:Block:timeline.html.twig',
             'context'         => 'GLOBAL',
             'filter'          => true,

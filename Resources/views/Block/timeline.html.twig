@@ -15,7 +15,11 @@ file that was distributed with this source code.
         {% if settings.title is not empty %}
             <div class="box-header with-border">
                 <h4 class="box-title">
-                    <i class="fa fa-clock-o fa-fw"></i> {{ settings.title }}
+                    {% if settings.icon is not empty %}
+                        {{ settings.icon }} {{ settings.title }}
+                    {% else %}
+                        {{ settings.title }}
+                    {% endif %}
                 </h4>
             </div>
         {% endif %}
