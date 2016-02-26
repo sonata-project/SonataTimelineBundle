@@ -25,7 +25,6 @@
         "sonata-project/easy-extends-bundle": "~2.1"
     },
     "require-dev": {
-        "fabpot/php-cs-fixer": "~0.1|~1.0",
         "sonata-project/admin-bundle": "~2.4@dev"
     },
     "autoload": {
