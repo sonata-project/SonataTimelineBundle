@@ -25,12 +25,12 @@ class SonataTimelineExtensionTest extends \PHPUnit_Framework_TestCase
     private $twigExtension;
 
     /**
-     * @var AdminInterface
+     * @var Pool
      */
     private $pool;
 
     /**
-     * @var Pool
+     * @var AdminInterface
      */
     private $admin;
 
