@@ -86,7 +86,7 @@ generate the correct entities for the timeline:
 
 .. code-block:: bash
 
-    $ php app/console sonata:easy-extends:generate SonataTimelineBundle -dest=src
+    $ php app/console sonata:easy-extends:generate SonataTimelineBundle --dest=src
 
 If you don't specify the ``--dest`` parameter, the files are generated in ``app/Application/Sonata/...```.
 
