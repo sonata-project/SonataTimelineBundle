@@ -16,16 +16,16 @@
         }
     ],
     "require": {
-        "symfony/doctrine-bridge": "~2.2",
+        "symfony/doctrine-bridge": "~2.2|~3.0",
         "doctrine/orm": "~2.2",
         "stephpy/timeline-bundle": "~2.0",
-        "sonata-project/core-bundle": "~2.3,>=2.3.1",
+        "sonata-project/core-bundle": "^2.3.1",
         "sonata-project/block-bundle": "~2.3",
         "sonata-project/intl-bundle": "~2.1",
         "sonata-project/easy-extends-bundle": "~2.1"
     },
     "require-dev": {
-        "sonata-project/admin-bundle": "~2.4@dev"
+        "sonata-project/admin-bundle": "~2.4"
     },
     "autoload": {
         "psr-4": { "Sonata\\TimelineBundle\\": "" }
@@ -34,5 +34,7 @@
         "branch-alias": {
             "dev-master": "2.3.x-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
