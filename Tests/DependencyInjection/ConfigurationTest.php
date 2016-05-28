@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -29,9 +29,9 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $expected = array(
             'class' => array(
                 'action_component' => 'stdClass',
-                'component'        => '%spy_timeline.class.component%',
-                'action'           => '%spy_timeline.class.action%',
-                'timeline'         => '%spy_timeline.class.timeline%',
+                'component' => '%spy_timeline.class.component%',
+                'action' => '%spy_timeline.class.action%',
+                'timeline' => '%spy_timeline.class.timeline%',
             ),
             'manager_type' => 'orm',
         );
