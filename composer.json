@@ -1,7 +1,7 @@
 {
     "name": "sonata-project/timeline-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony SonataTimelineBundle ~ integrate SpyTimelineBundle into Sonata",
+    "description": "Integrates SpyTimelineBundle into Sonata",
     "keywords": ["sonata", "date", "time", "wall"],
     "homepage": "https://sonata-project.org/bundles/timeline",
     "license": "MIT",
@@ -16,16 +16,20 @@
         }
     ],
     "require": {
-        "symfony/doctrine-bridge": "~2.2|~3.0",
-        "doctrine/orm": "~2.2",
-        "stephpy/timeline-bundle": "~2.0",
-        "sonata-project/core-bundle": "^2.3.1",
-        "sonata-project/block-bundle": "~2.3",
-        "sonata-project/intl-bundle": "~2.1",
-        "sonata-project/easy-extends-bundle": "~2.1"
+        "php": "^5.3 || ^7.0",
+        "symfony/doctrine-bridge": "^2.3 || ^3.0",
+        "doctrine/orm": "^2.2",
+        "stephpy/timeline-bundle": "^2.3",
+        "sonata-project/core-bundle": "^3.0",
+        "sonata-project/block-bundle": "^3.0",
+        "sonata-project/intl-bundle": "^2.2",
+        "sonata-project/easy-extends-bundle": "^2.1"
     },
     "require-dev": {
-        "sonata-project/admin-bundle": "~2.4"
+        "sonata-project/admin-bundle": "^3.0"
+    },
+    "conflict": {
+        "sonata-project/admin-bundle": "<3.0 || >=4.0"
     },
     "autoload": {
         "psr-4": { "Sonata\\TimelineBundle\\": "" }
@@ -34,7 +38,5 @@
         "branch-alias": {
             "dev-master": "3.x-dev"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
