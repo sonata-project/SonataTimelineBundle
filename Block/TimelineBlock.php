@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -73,20 +73,20 @@ class TimelineBlock extends BaseBlockService
         $subject = $this->actionManager->findOrCreateComponent($token->getUser(), $token->getUser()->getId());
 
         $entries = $this->timelineManager->getTimeline($subject, array(
-            'page'            => 1,
-            'max_per_page'    => $blockContext->getSetting('max_per_page'),
-            'type'            => TimelineInterface::TYPE_TIMELINE,
-            'context'         => $blockContext->getSetting('context'),
-            'filter'          => $blockContext->getSetting('filter'),
+            'page' => 1,
+            'max_per_page' => $blockContext->getSetting('max_per_page'),
+            'type' => TimelineInterface::TYPE_TIMELINE,
+            'context' => $blockContext->getSetting('context'),
+            'filter' => $blockContext->getSetting('filter'),
             'group_by_action' => $blockContext->getSetting('group_by_action'),
-            'paginate'        => $blockContext->getSetting('paginate'),
+            'paginate' => $blockContext->getSetting('paginate'),
         ));
 
         return $this->renderPrivateResponse($blockContext->getTemplate(), array(
-            'context'  => $blockContext,
+            'context' => $blockContext,
             'settings' => $blockContext->getSettings(),
-            'block'    => $blockContext->getBlock(),
-            'entries'  => $entries,
+            'block' => $blockContext->getBlock(),
+            'entries' => $entries,
         ), $response);
     }
 
@@ -99,14 +99,14 @@ class TimelineBlock extends BaseBlockService
             'keys' => array(
                 array('title', 'text', array(
                     'required' => false,
-                    'label'    => 'form.label_title',
+                    'label' => 'form.label_title',
                 )),
                 array('icon', 'text', array(
                     'required' => false,
                 )),
                 array('max_per_page', 'integer', array(
                     'required' => true,
-                    'label'    => 'form.label_max_per_page',
+                    'label' => 'form.label_max_per_page',
                 )),
             ),
             'translation_domain' => 'SonataTimelineBundle',
@@ -127,14 +127,14 @@ class TimelineBlock extends BaseBlockService
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'max_per_page'    => 10,
-            'title'           => 'Latest Actions',
-            'icon'            => '<i class="fa fa-clock-o fa-fw"></i>',
-            'template'        => 'SonataTimelineBundle:Block:timeline.html.twig',
-            'context'         => 'GLOBAL',
-            'filter'          => true,
+            'max_per_page' => 10,
+            'title' => 'Latest Actions',
+            'icon' => '<i class="fa fa-clock-o fa-fw"></i>',
+            'template' => 'SonataTimelineBundle:Block:timeline.html.twig',
+            'context' => 'GLOBAL',
+            'filter' => true,
             'group_by_action' => true,
-            'paginate'        => true,
+            'paginate' => true,
         ));
     }
 }
