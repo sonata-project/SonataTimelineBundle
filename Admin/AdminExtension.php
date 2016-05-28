@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -40,6 +40,41 @@ class AdminExtension extends BaseAdminExtension
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function postUpdate(AdminInterface $admin, $object)
+    {
+        $this->create($this->getSubject(), 'sonata.admin.update', array(
+            'target' => $this->getTarget($admin, $object),
+            'target_text' => $admin->toString($object),
+            'admin_code' => $admin->getCode(),
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist(AdminInterface $admin, $object)
+    {
+        $this->create($this->getSubject(), 'sonata.admin.create', array(
+            'target' => $this->getTarget($admin, $object),
+            'target_text' => $admin->toString($object),
+            'admin_code' => $admin->getCode(),
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preRemove(AdminInterface $admin, $object)
+    {
+        $this->create($this->getSubject(), 'sonata.admin.delete', array(
+            'target_text' => $admin->toString($object),
+            'admin_code' => $admin->getCode(),
+        ));
+    }
+
+    /**
      * @return ComponentInterface
      */
     protected function getSubject()
@@ -68,40 +103,5 @@ class AdminExtension extends BaseAdminExtension
         $action = $this->actionManager->create($subject, $verb, $components);
 
         $this->actionManager->updateAction($action);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postUpdate(AdminInterface $admin, $object)
-    {
-        $this->create($this->getSubject(), 'sonata.admin.update', array(
-            'target'      => $this->getTarget($admin, $object),
-            'target_text' => $admin->toString($object),
-            'admin_code'  => $admin->getCode(),
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postPersist(AdminInterface $admin, $object)
-    {
-        $this->create($this->getSubject(), 'sonata.admin.create', array(
-            'target'      => $this->getTarget($admin, $object),
-            'target_text' => $admin->toString($object),
-            'admin_code'  => $admin->getCode(),
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function preRemove(AdminInterface $admin, $object)
-    {
-        $this->create($this->getSubject(), 'sonata.admin.delete', array(
-            'target_text' => $admin->toString($object),
-            'admin_code'  => $admin->getCode(),
-        ));
     }
 }

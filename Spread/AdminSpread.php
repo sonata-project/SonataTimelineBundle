@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -51,7 +51,7 @@ class AdminSpread implements SpreadInterface
      */
     public function __construct(RegistryInterface $registry, $userClass)
     {
-        $this->registry  = $registry;
+        $this->registry = $registry;
         $this->userClass = $userClass;
     }
 
