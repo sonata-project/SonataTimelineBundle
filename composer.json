@@ -26,6 +26,7 @@
         "sonata-project/easy-extends-bundle": "^2.1"
     },
     "require-dev": {
+        "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "sonata-project/admin-bundle": "^3.0"
     },
     "conflict": {
