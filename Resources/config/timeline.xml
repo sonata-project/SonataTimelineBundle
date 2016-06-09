@@ -1,37 +1,26 @@
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="sonata.timeline.admin.extension" class="Sonata\TimelineBundle\Admin\AdminExtension">
-            <tag name="sonata.admin.extension" global="true" />
-
-            <argument type="service" id="spy_timeline.action_manager" />
-            <argument type="service" id="security.context" />
+            <tag name="sonata.admin.extension" global="true"/>
+            <argument type="service" id="spy_timeline.action_manager"/>
+            <argument type="service" id="security.context"/>
         </service>
-
         <service id="sonata.timeline.spread.admin" class="Sonata\TimelineBundle\Spread\AdminSpread">
             <tag name="spy_timeline.spread"/>
-
-            <argument type="service" id="doctrine" />
+            <argument type="service" id="doctrine"/>
             <argument>%sonata.user.admin.user.entity%</argument>
         </service>
-
         <service id="sonata.timeline.block.timeline" class="Sonata\TimelineBundle\Block\TimelineBlock">
             <tag name="sonata.block"/>
-
             <argument>sonata.timeline.block.timeline</argument>
-            <argument type="service" id="templating" />
-            <argument type="service" id="spy_timeline.action_manager" />
-            <argument type="service" id="spy_timeline.timeline_manager" />
-            <argument type="service" id="security.context" />
+            <argument type="service" id="templating"/>
+            <argument type="service" id="spy_timeline.action_manager"/>
+            <argument type="service" id="spy_timeline.timeline_manager"/>
+            <argument type="service" id="security.context"/>
         </service>
-
         <service id="sonata.timeline.twig.extension" class="Sonata\TimelineBundle\Twig\Extension\SonataTimelineExtension">
             <tag name="twig.extension"/>
-
             <argument type="service" id="sonata.admin.pool" on-invalid="ignore"/>
         </service>
     </services>
