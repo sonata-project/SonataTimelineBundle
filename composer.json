@@ -33,8 +33,14 @@
         "sonata-project/admin-bundle": "<3.0 || >=4.0"
     },
     "autoload": {
-        "psr-4": { "Sonata\\TimelineBundle\\": "" }
+        "psr-4": { "Sonata\\TimelineBundle\\": "" },
+        "exclude-from-classmap": [
+            "Tests/"
+        ]
     },
+    "autoload-dev": {
+        "psr-4": { "Sonata\\TimelineBundle\\Tests\\": "Tests/" }
+     },
     "extra": {
         "branch-alias": {
             "dev-master": "3.x-dev"
