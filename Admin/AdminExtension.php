@@ -11,13 +11,13 @@
 
 namespace Sonata\TimelineBundle\Admin;
 
-use Sonata\AdminBundle\Admin\AdminExtension as BaseAdminExtension;
+use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
-class AdminExtension extends BaseAdminExtension
+class AdminExtension extends AbstractAdminExtension
 {
     /**
      * @var ActionManagerInterface
