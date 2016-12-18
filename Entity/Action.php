@@ -16,7 +16,7 @@ use Spy\TimelineBundle\Entity\Action as BaseAction;
 /**
  * Action entity for Doctrine ORM.
  *
- * @uses BaseAction
+ * @uses \BaseAction
  *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
