@@ -16,7 +16,7 @@ use Spy\TimelineBundle\Entity\Component as BaseComponent;
 /**
  * Component entity for Doctrine ORM.
  *
- * @uses BaseComponent
+ * @uses \BaseComponent
  *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
