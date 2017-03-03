@@ -12,8 +12,8 @@
 namespace Sonata\TimelineBundle\Block;
 
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
@@ -26,7 +26,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class TimelineBlock extends BaseBlockService
+class TimelineBlock extends AbstractAdminBlockService
 {
     /**
      * @var ActionManagerInterface
