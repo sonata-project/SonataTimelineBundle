@@ -16,6 +16,7 @@ use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
@@ -45,6 +46,24 @@ class SonataTimelineExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('timeline.xml');
+
+        // Set the SecurityContext for Symfony <2.6
+        // NEXT_MAJOR: Go back to simple xml configuration when bumping requirements to SF 2.6+
+        if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
+            $tokenStorageReference = new Reference('security.token_storage');
+        } else {
+            $tokenStorageReference = new Reference('security.context');
+        }
+
+        $container
+            ->getDefinition('sonata.timeline.admin.extension')
+            ->replaceArgument(1, $tokenStorageReference)
+        ;
+
+        $container
+            ->getDefinition('sonata.timeline.block.timeline')
+            ->replaceArgument(5, $tokenStorageReference)
+        ;
 
         $this->configureClass($config, $container);
         $this->registerDoctrineMapping($config);

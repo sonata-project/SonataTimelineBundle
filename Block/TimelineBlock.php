@@ -12,8 +12,8 @@
 namespace Sonata\TimelineBundle\Block;
 
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
@@ -21,12 +21,13 @@ use Spy\Timeline\Model\TimelineInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class TimelineBlock extends BaseBlockService
+class TimelineBlock extends AbstractAdminBlockService
 {
     /**
      * @var ActionManagerInterface
@@ -39,22 +40,28 @@ class TimelineBlock extends BaseBlockService
     protected $timelineManager;
 
     /**
-     * @var SecurityContextInterface
+     * @var TokenStorageInterface|SecurityContextInterface
      */
     protected $securityContext;
 
     /**
-     * @param string                   $name
-     * @param EngineInterface          $templating
-     * @param ActionManagerInterface   $actionManager
-     * @param TimelineManagerInterface $timelineManager
-     * @param SecurityContextInterface $securityContext
+     * NEXT_MAJOR: Go back to signature class check when bumping requirements to SF 2.6+.
+     *
+     * @param string                                         $name
+     * @param EngineInterface                                $templating
+     * @param ActionManagerInterface                         $actionManager
+     * @param TimelineManagerInterface                       $timelineManager
+     * @param TokenStorageInterface|SecurityContextInterface $tokenStorage
      */
-    public function __construct($name, EngineInterface $templating, ActionManagerInterface $actionManager, TimelineManagerInterface $timelineManager, SecurityContextInterface $securityContext)
+    public function __construct($name, EngineInterface $templating, ActionManagerInterface $actionManager, TimelineManagerInterface $timelineManager, $tokenStorage)
     {
+        if (!$tokenStorage instanceof TokenStorageInterface && !$tokenStorage instanceof SecurityContextInterface) {
+            throw new \InvalidArgumentException('Argument 5 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
+        }
+
         $this->actionManager = $actionManager;
         $this->timelineManager = $timelineManager;
-        $this->securityContext = $securityContext;
+        $this->securityContext = $tokenStorage;
 
         parent::__construct($name, $templating);
     }
