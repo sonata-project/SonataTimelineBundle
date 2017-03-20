@@ -17,10 +17,9 @@ for a user or a group of users. The current implementation integrate the basic f
     This is a work in progress, change may occurs in order to tweak performance issues, configuration options, or the
     rendering workflow.
 
-Reference Guide
----------------
-
 .. toctree::
+   :caption: Reference Guide
+   :name: reference-guide
    :maxdepth: 1
    :numbered:
 
