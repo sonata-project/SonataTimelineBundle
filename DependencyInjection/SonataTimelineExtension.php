@@ -47,7 +47,6 @@ class SonataTimelineExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('timeline.xml');
 
-        // Set the SecurityContext for Symfony <2.6
         // NEXT_MAJOR: Go back to simple xml configuration when bumping requirements to SF 2.6+
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
             $tokenStorageReference = new Reference('security.token_storage');
