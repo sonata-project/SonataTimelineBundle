@@ -26,6 +26,7 @@
         "sonata-project/easy-extends-bundle": "^2.1"
     },
     "require-dev": {
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7.6 || ^1.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "sonata-project/admin-bundle": "^3.1"
     },

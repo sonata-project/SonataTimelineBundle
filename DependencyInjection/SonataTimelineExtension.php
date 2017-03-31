@@ -61,7 +61,7 @@ class SonataTimelineExtension extends Extension
 
         $container
             ->getDefinition('sonata.timeline.block.timeline')
-            ->replaceArgument(5, $tokenStorageReference)
+            ->replaceArgument(4, $tokenStorageReference)
         ;
 
         $this->configureClass($config, $container);
