@@ -23,7 +23,7 @@
         "sonata-project/core-bundle": "^3.0",
         "sonata-project/block-bundle": "^3.2",
         "sonata-project/intl-bundle": "^2.2",
-        "sonata-project/easy-extends-bundle": "^2.1"
+        "sonata-project/easy-extends-bundle": "^2.2"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^0.7.6 || ^1.0",
