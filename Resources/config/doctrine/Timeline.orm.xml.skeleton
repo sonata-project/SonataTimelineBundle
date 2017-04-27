@@ -9,7 +9,7 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Application\Sonata\TimelineBundle\Entity\Timeline"
+        name="{{ namespace }}\Entity\Timeline"
         table="timeline__timeline"
         repository-class="Doctrine\ORM\EntityRepository">
 
