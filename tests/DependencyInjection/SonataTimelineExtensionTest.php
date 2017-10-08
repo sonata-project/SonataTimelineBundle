@@ -26,8 +26,8 @@ class SonataTimelineExtensionTest extends AbstractExtensionTestCase
 
     protected function getContainerExtensions()
     {
-        return array(
+        return [
             new SonataTimelineExtension(),
-        );
+        ];
     }
 }

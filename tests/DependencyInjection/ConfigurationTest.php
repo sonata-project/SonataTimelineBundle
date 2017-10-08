@@ -22,19 +22,19 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testBCCode()
     {
         $processor = new Processor();
-        $configuration = $processor->processConfiguration(new Configuration(), array(array(
-            'class' => array('actionComponent' => 'stdClass'),
-        )));
+        $configuration = $processor->processConfiguration(new Configuration(), [[
+            'class' => ['actionComponent' => 'stdClass'],
+        ]]);
 
-        $expected = array(
-            'class' => array(
+        $expected = [
+            'class' => [
                 'action_component' => 'stdClass',
                 'component' => '%spy_timeline.class.component%',
                 'action' => '%spy_timeline.class.action%',
                 'timeline' => '%spy_timeline.class.timeline%',
-            ),
+            ],
             'manager_type' => 'orm',
-        );
+        ];
 
         $this->assertEquals($expected, $configuration);
     }
