@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('sonata_timeline');
 
-        $supportedManagerTypes = array('orm', 'mongodb');
+        $supportedManagerTypes = ['orm', 'mongodb'];
 
         $rootNode
             ->children()

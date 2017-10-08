@@ -51,7 +51,7 @@ class SonataTimelineExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
-        $component->setIdentifier(array('2'));
+        $component->setIdentifier(['2']);
 
         $action = new Action();
 
@@ -81,7 +81,7 @@ class SonataTimelineExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
-        $component->setIdentifier(array('2'));
+        $component->setIdentifier(['2']);
 
         $action = new Action();
 
@@ -115,7 +115,7 @@ class SonataTimelineExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
-        $component->setIdentifier(array('2'));
+        $component->setIdentifier(['2']);
 
         $action = new Action();
 

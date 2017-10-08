@@ -36,9 +36,9 @@ class SonataTimelineExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('sonata_timeline_generate_link', array($this, 'generateLink'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('sonata_timeline_generate_link', [$this, 'generateLink'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
@@ -67,7 +67,7 @@ class SonataTimelineExtension extends \Twig_Extension
             return $component->getHash();
         }
 
-        foreach (array('edit', 'show') as $mode) {
+        foreach (['edit', 'show'] as $mode) {
             if ($admin->hasRoute($mode) && $admin->isGranted(strtoupper($mode))) {
                 return sprintf(
                     '<a href="%s">%s</a>',
