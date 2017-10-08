@@ -58,11 +58,11 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
      *
      * @var array
      */
-    protected $supportedVerbs = array(
+    protected $supportedVerbs = [
         'sonata.admin.create',
         'sonata.admin.update',
         'sonata.admin.delete',
-    );
+    ];
 
     /**
      * Test supports() method with supported verbs and non-supported verbs.
@@ -97,7 +97,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
 
         $spread = $this->getMockBuilder('\Sonata\TimelineBundle\Spread\AdminSpread')
             ->disableOriginalConstructor()
-            ->setMethods(array('getUsers'))
+            ->setMethods(['getUsers'])
             ->getMock();
         $spread->expects($this->any())->method('getUsers')->will($this->returnValue($this->getFakeUsers()));
 
@@ -127,13 +127,13 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
      */
     protected function getFakeUsers()
     {
-        $users = array();
+        $users = [];
 
         for ($i = 1; $i < 6; ++$i) {
             $user = new FakeUserEntity();
             $user->setId($i);
 
-            $users[] = array($user);
+            $users[] = [$user];
         }
 
         return $users;

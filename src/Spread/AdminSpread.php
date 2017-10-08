@@ -22,18 +22,18 @@ class AdminSpread implements SpreadInterface
     /**
      * @var array
      */
-    protected $supportedVerbs = array(
+    protected $supportedVerbs = [
         'sonata.admin.create',
         'sonata.admin.update',
         'sonata.admin.delete',
-    );
+    ];
 
     /**
      * @var array
      */
-    protected $supportedRoles = array(
+    protected $supportedRoles = [
         'ROLE_SUPER_ADMIN',
-    );
+    ];
 
     /**
      * @var RegistryInterface

@@ -79,7 +79,7 @@ class TimelineBlock extends AbstractAdminBlockService
 
         $subject = $this->actionManager->findOrCreateComponent($token->getUser(), $token->getUser()->getId());
 
-        $entries = $this->timelineManager->getTimeline($subject, array(
+        $entries = $this->timelineManager->getTimeline($subject, [
             'page' => 1,
             'max_per_page' => $blockContext->getSetting('max_per_page'),
             'type' => TimelineInterface::TYPE_TIMELINE,
@@ -87,14 +87,14 @@ class TimelineBlock extends AbstractAdminBlockService
             'filter' => $blockContext->getSetting('filter'),
             'group_by_action' => $blockContext->getSetting('group_by_action'),
             'paginate' => $blockContext->getSetting('paginate'),
-        ));
+        ]);
 
-        return $this->renderPrivateResponse($blockContext->getTemplate(), array(
+        return $this->renderPrivateResponse($blockContext->getTemplate(), [
             'context' => $blockContext,
             'settings' => $blockContext->getSettings(),
             'block' => $blockContext->getBlock(),
             'entries' => $entries,
-        ), $response);
+        ], $response);
     }
 
     /**
@@ -102,22 +102,22 @@ class TimelineBlock extends AbstractAdminBlockService
      */
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
-        $formMapper->add('settings', 'sonata_type_immutable_array', array(
-            'keys' => array(
-                array('title', 'text', array(
+        $formMapper->add('settings', 'sonata_type_immutable_array', [
+            'keys' => [
+                ['title', 'text', [
                     'required' => false,
                     'label' => 'form.label_title',
-                )),
-                array('icon', 'text', array(
+                ]],
+                ['icon', 'text', [
                     'required' => false,
-                )),
-                array('max_per_page', 'integer', array(
+                ]],
+                ['max_per_page', 'integer', [
                     'required' => true,
                     'label' => 'form.label_max_per_page',
-                )),
-            ),
+                ]],
+            ],
             'translation_domain' => 'SonataTimelineBundle',
-        ));
+        ]);
     }
 
     /**
@@ -133,7 +133,7 @@ class TimelineBlock extends AbstractAdminBlockService
      */
     public function configureSettings(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'max_per_page' => 10,
             'title' => 'Latest Actions',
             'icon' => '<i class="fa fa-clock-o fa-fw"></i>',
@@ -142,6 +142,6 @@ class TimelineBlock extends AbstractAdminBlockService
             'filter' => true,
             'group_by_action' => true,
             'paginate' => true,
-        ));
+        ]);
     }
 }
