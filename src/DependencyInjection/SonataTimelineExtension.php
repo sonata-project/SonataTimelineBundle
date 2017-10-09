@@ -120,82 +120,82 @@ class SonataTimelineExtension extends Extension
 
         $collector = DoctrineCollector::getInstance();
 
-        $collector->addAssociation($config['class']['timeline'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['timeline'], 'mapManyToOne', [
             'fieldName' => 'action',
             'targetEntity' => $config['class']['action'],
-            'cascade' => array(),
+            'cascade' => [],
             'mappedBy' => null,
             'inversedBy' => 'timelines',
-            'joinColumns' => array(
-                array(
+            'joinColumns' => [
+                [
                     'name' => 'action_id',
                     'referencedColumnName' => 'id',
-                ),
-            ),
+                ],
+            ],
             'orphanRemoval' => false,
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['timeline'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['timeline'], 'mapManyToOne', [
             'fieldName' => 'subject',
             'targetEntity' => $config['class']['component'],
-            'cascade' => array(),
+            'cascade' => [],
             'mappedBy' => null,
             'inversedBy' => null,
-            'joinColumns' => array(
-                array(
+            'joinColumns' => [
+                [
                     'name' => 'subject_id',
                     'referencedColumnName' => 'id',
                     'onDelete' => 'CASCADE',
-                ),
-            ),
+                ],
+            ],
             'orphanRemoval' => false,
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['action'], 'mapOneToMany', array(
+        $collector->addAssociation($config['class']['action'], 'mapOneToMany', [
              'fieldName' => 'actionComponents',
              'targetEntity' => $config['class']['action_component'],
-             'cascade' => array(
+             'cascade' => [
                  1 => 'persist',
-             ),
+             ],
              'mappedBy' => 'action',
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['action'], 'mapOneToMany', array(
+        $collector->addAssociation($config['class']['action'], 'mapOneToMany', [
              'fieldName' => 'timelines',
              'targetEntity' => $config['class']['timeline'],
-             'cascade' => array(),
+             'cascade' => [],
              'mappedBy' => 'action',
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', [
             'fieldName' => 'action',
             'targetEntity' => $config['class']['action'],
-            'cascade' => array(),
+            'cascade' => [],
             'mappedBy' => null,
             'inversedBy' => 'actionComponents',
-            'joinColumns' => array(
-                array(
+            'joinColumns' => [
+                [
                     'name' => 'action_id',
                     'referencedColumnName' => 'id',
                     'onDelete' => 'CASCADE',
-                ),
-            ),
+                ],
+            ],
             'orphanRemoval' => false,
-        ));
+        ]);
 
-        $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', array(
+        $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', [
             'fieldName' => 'component',
             'targetEntity' => $config['class']['component'],
-            'cascade' => array(),
+            'cascade' => [],
             'mappedBy' => null,
-            'joinColumns' => array(
-                array(
+            'joinColumns' => [
+                [
                     'name' => 'component_id',
                     'referencedColumnName' => 'id',
                     'onDelete' => 'CASCADE',
-                ),
-            ),
+                ],
+            ],
             'orphanRemoval' => false,
-        ));
+        ]);
     }
 }

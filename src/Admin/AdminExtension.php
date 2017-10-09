@@ -51,11 +51,11 @@ class AdminExtension extends AbstractAdminExtension
      */
     public function postUpdate(AdminInterface $admin, $object)
     {
-        $this->create($this->getSubject(), 'sonata.admin.update', array(
+        $this->create($this->getSubject(), 'sonata.admin.update', [
             'target' => $this->getTarget($admin, $object),
             'target_text' => $admin->toString($object),
             'admin_code' => $admin->getCode(),
-        ));
+        ]);
     }
 
     /**
@@ -63,11 +63,11 @@ class AdminExtension extends AbstractAdminExtension
      */
     public function postPersist(AdminInterface $admin, $object)
     {
-        $this->create($this->getSubject(), 'sonata.admin.create', array(
+        $this->create($this->getSubject(), 'sonata.admin.create', [
             'target' => $this->getTarget($admin, $object),
             'target_text' => $admin->toString($object),
             'admin_code' => $admin->getCode(),
-        ));
+        ]);
     }
 
     /**
@@ -75,10 +75,10 @@ class AdminExtension extends AbstractAdminExtension
      */
     public function preRemove(AdminInterface $admin, $object)
     {
-        $this->create($this->getSubject(), 'sonata.admin.delete', array(
+        $this->create($this->getSubject(), 'sonata.admin.delete', [
             'target_text' => $admin->toString($object),
             'admin_code' => $admin->getCode(),
-        ));
+        ]);
     }
 
     /**
@@ -105,7 +105,7 @@ class AdminExtension extends AbstractAdminExtension
      * @param string             $verb
      * @param array              $components
      */
-    protected function create(ComponentInterface $subject, $verb, $components = array())
+    protected function create(ComponentInterface $subject, $verb, $components = [])
     {
         $action = $this->actionManager->create($subject, $verb, $components);
 
