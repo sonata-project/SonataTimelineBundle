@@ -16,8 +16,8 @@
         }
     ],
     "require": {
-        "php": "^5.3 || ^7.0",
-        "symfony/doctrine-bridge": "^2.3 || ^3.0",
+        "php": "^7.1",
+        "symfony/doctrine-bridge": "^2.8 || ^3.1",
         "doctrine/orm": "^2.2",
         "stephpy/timeline-bundle": "^2.3",
         "sonata-project/core-bundle": "^3.0",
