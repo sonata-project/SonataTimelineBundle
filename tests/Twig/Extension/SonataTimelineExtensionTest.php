@@ -11,13 +11,14 @@
 
 namespace Sonata\TimelineBundle\Tests\Twig\Extension;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\TimelineBundle\Twig\Extension\SonataTimelineExtension;
 use Spy\TimelineBundle\Document\Action;
 use Spy\TimelineBundle\Document\Component;
 
-class SonataTimelineExtensionTest extends \PHPUnit_Framework_TestCase
+class SonataTimelineExtensionTest extends TestCase
 {
     /**
      * @var SonataTimelineExtension
@@ -36,7 +37,7 @@ class SonataTimelineExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->admin = $this->getMock('Sonata\AdminBundle\Admin\AdminInterface');
+        $this->admin = $this->createMock('Sonata\AdminBundle\Admin\AdminInterface');
 
         $this->pool = $this->getMockBuilder('Sonata\AdminBundle\Admin\Pool')->disableOriginalConstructor()->getMock();
         $this->pool->expects($this->any())

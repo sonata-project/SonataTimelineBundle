@@ -11,6 +11,7 @@
 
 namespace Sonata\TimelineBundle\Tests\Spread;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\TimelineBundle\Spread\AdminSpread;
 use Spy\Timeline\Model\Action;
 use Spy\Timeline\Spread\Entry\EntryCollection;
@@ -51,7 +52,7 @@ class FakeUserEntity
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
-class AdminSpreadTest extends \PHPUnit_Framework_TestCase
+class AdminSpreadTest extends TestCase
 {
     /**
      * AdminSpread supported verbs.
@@ -69,7 +70,7 @@ class AdminSpreadTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupportsMethod()
     {
-        $registryMock = $this->getMock('\Symfony\Bridge\Doctrine\RegistryInterface');
+        $registryMock = $this->createMock('\Symfony\Bridge\Doctrine\RegistryInterface');
         $spread = new AdminSpread($registryMock, '\Sonata\TimelineBundle\Tests\Spread\FakeUserEntity');
 
         // Test non-supported verbs
