@@ -23,13 +23,13 @@
         "sonata-project/easy-extends-bundle": "^2.2",
         "sonata-project/intl-bundle": "^2.2",
         "stephpy/timeline-bundle": "^2.3",
-        "symfony/doctrine-bridge": "^2.8 || ^3.2"
+        "symfony/doctrine-bridge": "^2.8 || ^3.2 || ^4.0"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "sonata-project/admin-bundle": "^3.1",
-        "symfony/phpunit-bridge": "^3.3"
+        "symfony/phpunit-bridge": "^3.3 || ^4.0"
     },
     "conflict": {
         "sonata-project/admin-bundle": "<3.1 || >=4.0"
