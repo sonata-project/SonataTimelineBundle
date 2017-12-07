@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -32,7 +34,7 @@ class SonataTimelineExtension extends Extension
      * @param array            $configs   An array of configuration settings
      * @param ContainerBuilder $container A ContainerBuilder instance
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
@@ -93,7 +95,7 @@ class SonataTimelineExtension extends Extension
      * @param array            $config
      * @param ContainerBuilder $container
      */
-    public function configureClass($config, ContainerBuilder $container)
+    public function configureClass($config, ContainerBuilder $container): void
     {
         if ('orm' === $config['manager_type']) {
             $modelType = 'entity';
@@ -110,7 +112,7 @@ class SonataTimelineExtension extends Extension
     /**
      * @param array $config
      */
-    public function registerDoctrineMapping(array $config)
+    public function registerDoctrineMapping(array $config): void
     {
         foreach ($config['class'] as $type => $class) {
             if (!class_exists($class)) {

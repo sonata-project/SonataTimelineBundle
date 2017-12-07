@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -35,7 +37,7 @@ class SonataTimelineExtensionTest extends TestCase
      */
     private $admin;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->admin = $this->createMock('Sonata\AdminBundle\Admin\AdminInterface');
 
@@ -48,7 +50,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->twigExtension = new SonataTimelineExtension($this->pool);
     }
 
-    public function testGenerateLink()
+    public function testGenerateLink(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
@@ -78,7 +80,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->assertEquals('<a href="acme/demo/2/edit">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
-    public function testGenerateLinkDisabledEdit()
+    public function testGenerateLinkDisabledEdit(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
@@ -112,7 +114,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->assertEquals('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
-    public function testGenerateLinkNoEditPermission()
+    public function testGenerateLinkNoEditPermission(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
@@ -150,7 +152,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->assertEquals('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
-    public function testGenerateLinkDisabledEditAndShow()
+    public function testGenerateLinkDisabledEditAndShow(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
