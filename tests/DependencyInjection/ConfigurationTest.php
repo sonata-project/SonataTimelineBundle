@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Symfony\Component\Config\Definition\Processor;
  */
 class ConfigurationTest extends TestCase
 {
-    public function testBCCode()
+    public function testBCCode(): void
     {
         $processor = new Processor();
         $configuration = $processor->processConfiguration(new Configuration(), [[

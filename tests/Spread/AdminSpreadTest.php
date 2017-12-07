@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -31,7 +33,7 @@ class FakeUserEntity
     /**
      * @param $id
      */
-    public function setId($id)
+    public function setId($id): void
     {
         $this->id = $id;
     }
@@ -68,7 +70,7 @@ class AdminSpreadTest extends TestCase
     /**
      * Test supports() method with supported verbs and non-supported verbs.
      */
-    public function testSupportsMethod()
+    public function testSupportsMethod(): void
     {
         $registryMock = $this->createMock('\Symfony\Bridge\Doctrine\RegistryInterface');
         $spread = new AdminSpread($registryMock, '\Sonata\TimelineBundle\Tests\Spread\FakeUserEntity');
@@ -91,7 +93,7 @@ class AdminSpreadTest extends TestCase
     /**
      * Test process() method in order to test that collection is well completed.
      */
-    public function testProcessMethod()
+    public function testProcessMethod(): void
     {
         $action = new Action();
         $action->setVerb('a.not.supported.verb');

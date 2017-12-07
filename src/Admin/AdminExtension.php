@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -49,7 +51,7 @@ class AdminExtension extends AbstractAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function postUpdate(AdminInterface $admin, $object)
+    public function postUpdate(AdminInterface $admin, $object): void
     {
         $this->create($this->getSubject(), 'sonata.admin.update', [
             'target' => $this->getTarget($admin, $object),
@@ -61,7 +63,7 @@ class AdminExtension extends AbstractAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function postPersist(AdminInterface $admin, $object)
+    public function postPersist(AdminInterface $admin, $object): void
     {
         $this->create($this->getSubject(), 'sonata.admin.create', [
             'target' => $this->getTarget($admin, $object),
@@ -73,7 +75,7 @@ class AdminExtension extends AbstractAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function preRemove(AdminInterface $admin, $object)
+    public function preRemove(AdminInterface $admin, $object): void
     {
         $this->create($this->getSubject(), 'sonata.admin.delete', [
             'target_text' => $admin->toString($object),
@@ -105,7 +107,7 @@ class AdminExtension extends AbstractAdminExtension
      * @param string             $verb
      * @param array              $components
      */
-    protected function create(ComponentInterface $subject, $verb, $components = [])
+    protected function create(ComponentInterface $subject, $verb, $components = []): void
     {
         $action = $this->actionManager->create($subject, $verb, $components);
 
