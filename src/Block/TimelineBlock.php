@@ -140,7 +140,7 @@ class TimelineBlock extends AbstractAdminBlockService
             'max_per_page' => 10,
             'title' => 'Latest Actions',
             'icon' => '<i class="fa fa-clock-o fa-fw"></i>',
-            'template' => 'SonataTimelineBundle:Block:timeline.html.twig',
+            'template' => '@SonataTimeline/Block/timeline.html.twig',
             'context' => 'GLOBAL',
             'filter' => true,
             'group_by_action' => true,
