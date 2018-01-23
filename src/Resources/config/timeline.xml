@@ -14,7 +14,7 @@
         <service id="sonata.timeline.block.timeline" class="Sonata\TimelineBundle\Block\TimelineBlock">
             <tag name="sonata.block"/>
             <argument>sonata.timeline.block.timeline</argument>
-            <argument type="service" id="templating"/>
+            <argument type="service" id="sonata.templating"/>
             <argument type="service" id="spy_timeline.action_manager"/>
             <argument type="service" id="spy_timeline.timeline_manager"/>
             <argument/>
