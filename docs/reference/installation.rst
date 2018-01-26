@@ -171,7 +171,7 @@ And then edit the sonata_admin definition here, adding the "template" option.
             dashboard:
                 blocks:
                     # ...
-                    - { position: center, type: sonata.timeline.block.timeline, settings: { template: 'ApplicationTimelineBundle::Block:timeline.html.twig', context: SONATA_ADMIN, max_per_page: 25 }}
+                    - { position: center, type: sonata.timeline.block.timeline, settings: { template: '@ApplicationTimeline/Block/timeline.html.twig', context: SONATA_ADMIN, max_per_page: 25 }}
 
 And now, you're good to go !
 
