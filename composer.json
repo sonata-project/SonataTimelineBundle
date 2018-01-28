@@ -2,7 +2,12 @@
     "name": "sonata-project/timeline-bundle",
     "type": "symfony-bundle",
     "description": "Integrates SpyTimelineBundle into Sonata",
-    "keywords": ["sonata", "date", "time", "wall"],
+    "keywords": [
+        "sonata",
+        "date",
+        "time",
+        "wall"
+    ],
     "homepage": "https://sonata-project.org/bundles/timeline",
     "license": "MIT",
     "authors": [
@@ -25,19 +30,13 @@
         "stephpy/timeline-bundle": "^2.3",
         "symfony/doctrine-bridge": "^2.8 || ^3.2 || ^4.0"
     },
+    "conflict": {
+        "sonata-project/admin-bundle": "<3.1 || >=4.0"
+    },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
         "sonata-project/admin-bundle": "^3.1",
         "symfony/phpunit-bridge": "^3.3 || ^4.0"
-    },
-    "conflict": {
-        "sonata-project/admin-bundle": "<3.1 || >=4.0"
-    },
-    "autoload": {
-        "psr-4": { "Sonata\\TimelineBundle\\": "src/" }
-    },
-    "autoload-dev": {
-        "psr-4": { "Sonata\\TimelineBundle\\Tests\\": "tests/" }
     },
     "config": {
         "sort-packages": true
@@ -45,6 +44,16 @@
     "extra": {
         "branch-alias": {
             "dev-master": "4.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sonata\\TimelineBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sonata\\TimelineBundle\\Tests\\": "tests/"
         }
     }
 }
