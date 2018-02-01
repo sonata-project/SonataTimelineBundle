@@ -11,12 +11,15 @@ file that was distributed with this source code.
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
-    <div class="panel panel-default">
+    <div class="panel panel-default {{ settings.class }}">
         {% if settings.title is not empty %}
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    {% if settings.icon is not empty %}
-                        {{ settings.icon|raw }} {{ settings.title }}
+                    {% if settings.icon %}
+                        <i class="{{ settings.icon }}" aria-hidden="true"></i>
+                    {% endif %}
+                    {% if settings.translation_domain %}
+                        {{ settings.title|trans({}, settings.translation_domain) }}
                     {% else %}
                         {{ settings.title }}
                     {% endif %}
