@@ -108,10 +108,19 @@ class TimelineBlock extends AbstractAdminBlockService
         $formMapper->add('settings', ImmutableArrayType::class, [
             'keys' => [
                 ['title', TextType::class, [
-                    'required' => false,
                     'label' => 'form.label_title',
+                    'required' => false,
+                ]],
+                ['translation_domain', TextType::class, [
+                    'label' => 'form.label_translation_domain',
+                    'required' => false,
                 ]],
                 ['icon', TextType::class, [
+                    'label' => 'form.label_icon',
+                    'required' => false,
+                ]],
+                ['class', TextType::class, [
+                    'label' => 'form.label_class',
                     'required' => false,
                 ]],
                 ['max_per_page', IntegerType::class, [
@@ -138,8 +147,10 @@ class TimelineBlock extends AbstractAdminBlockService
     {
         $resolver->setDefaults([
             'max_per_page' => 10,
-            'title' => 'Latest Actions',
-            'icon' => '<i class="fa fa-clock-o fa-fw"></i>',
+            'title' => null,
+            'translation_domain' => null,
+            'icon' => 'fa fa-clock-o fa-fw',
+            'class' => null,
             'template' => '@SonataTimeline/Block/timeline.html.twig',
             'context' => 'GLOBAL',
             'filter' => true,
