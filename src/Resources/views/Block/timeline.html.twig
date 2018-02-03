@@ -45,7 +45,7 @@ file that was distributed with this source code.
                         {% set subject_text = sonata_timeline_generate_link(subject, entry) %}
                     {% else %}
                         {% set subject_text = '<abbr title="' ~
-                            'element_reference_deleted'|trans({'%reference%': target.hash}, "SonataTimelineBundle") ~ '">' ~
+                            'element_reference_deleted'|trans({'%reference%': subject.hash}, "SonataTimelineBundle") ~ '">' ~
                             'element_deleted'|trans({}, "SonataTimelineBundle") ~
                             '</abbr>'
                         %}
