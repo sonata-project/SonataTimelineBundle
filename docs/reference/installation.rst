@@ -9,7 +9,7 @@ The easiest way to install ``SonataTimelineBundle`` is to require it with Compos
 
 .. code-block:: bash
 
-    $ php composer.phar require sonata-project/timeline-bundle
+    $ composer require sonata-project/timeline-bundle
 
 Alternatively, you could add a dependency into your ``composer.json`` file directly.
 
@@ -17,7 +17,24 @@ Alternatively, you could add a dependency into your ``composer.json`` file direc
 
     This will install the SpyTimelineBundle_, too.
 
-Now, enable the bundle in the kernel:
+Now, enable the bundle in ``bundles.php`` file:
+
+.. code-block:: php
+
+    <?php
+
+    // config/bundles.php
+
+    return [
+        //...
+        Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
+        Sonata\TimelineBundle\SonataTimelineBundle::class => ['all' => true],
+        Spy\TimelineBundle\SpyTimelineBundle::class => ['all' => true],
+    ];
+
+.. note::
+    If you are not using Symfony Flex, you should enable bundles in your
+    ``AppKernel.php``.
 
 .. code-block:: php
 
@@ -39,44 +56,54 @@ Now, enable the bundle in the kernel:
 Configuration
 -------------
 
-To use the ``BlockBundle``, add the following lines to your application configuration file:
+.. note::
+    If you are not using Symfony Flex, all configuration in this section should
+    be added to ``app/config/config.yml``.
 
-.. configuration-block::
+SpyTimelineBundle Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    .. code-block:: yaml
+.. code-block:: yaml
 
-        # app/config/config.yml
+    # config/packages/spy_timeline.yaml
 
-        spy_timeline:
-            drivers:
-                orm:
-                    object_manager: doctrine.orm.entity_manager
-                    classes:
-                        query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
-                        timeline:         Application\Sonata\TimelineBundle\Entity\Timeline
-                        action:           Application\Sonata\TimelineBundle\Entity\Action
-                        component:        Application\Sonata\TimelineBundle\Entity\Component
-                        action_component: Application\Sonata\TimelineBundle\Entity\ActionComponent
+    spy_timeline:
+        drivers:
+            orm:
+                object_manager: doctrine.orm.entity_manager
+                classes:
+                    query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
+                    timeline:         App\Application\Sonata\TimelineBundle\Entity\Timeline
+                    action:           App\Application\Sonata\TimelineBundle\Entity\Action
+                    component:        App\Application\Sonata\TimelineBundle\Entity\Component
+                    action_component: App\Application\Sonata\TimelineBundle\Entity\ActionComponent
 
-            filters:
-                data_hydrator:
-                    priority:             20
-                    service:              spy_timeline.filter.data_hydrator
-                    filter_unresolved:    false
-                    locators:
-                        - spy_timeline.filter.data_hydrator.locator.doctrine_orm
+        filters:
+            data_hydrator:
+                priority:             20
+                service:              spy_timeline.filter.data_hydrator
+                filter_unresolved:    false
+                locators:
+                    - spy_timeline.filter.data_hydrator.locator.doctrine_orm
 
-    .. code-block:: yaml
+.. note::
+    If you are not using Symfony Flex, add classes without the ``App\``
+    part.
 
-        # app/config/config.yml
+SonataTimelineBundle Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        sonata_timeline:
-            manager_type:         orm
-            class:
-                timeline:         "%spy_timeline.class.timeline%"
-                action:           "%spy_timeline.class.action%"
-                component:        "%spy_timeline.class.component%"
-                action_component: "%spy_timeline.class.action_component%"
+.. code-block:: yaml
+
+    # config/packages/sonata.yaml
+
+    sonata_timeline:
+        manager_type:         orm
+        class:
+            timeline:         "%spy_timeline.class.timeline%"
+            action:           "%spy_timeline.class.action%"
+            component:        "%spy_timeline.class.component%"
+            action_component: "%spy_timeline.class.action_component%"
 
 Extend the Bundle
 -----------------
@@ -86,44 +113,67 @@ generate the correct entities for the timeline:
 
 .. code-block:: bash
 
-    $ php app/console sonata:easy-extends:generate SonataTimelineBundle --dest=src
+    $ bin/console sonata:easy-extends:generate SonataTimelineBundle --dest=src --namespace_prefix=App
 
-If you don't specify the ``--dest`` parameter, the files are generated in ``app/Application/Sonata/...```.
+.. note::
+    If you are not using Symfony Flex, use command without ``--namespace_prefix=App``.
+
+With provided parameters, the files are generated in ``src/Application/Sonata/TimelineBundle``.
 
 .. note::
 
-    The command will generate domain objects in an ``Application`` namespace.
+    The command will generate domain objects in an ``App\Application`` namespace.
     So you can point entities associations to a global and common namespace.
     This will make entities sharing very easily as your models are accessible
     through a global namespace. For instance the action will be
-    ``Application\Sonata\TimelineBundle\Entity\Action``.
+    ``App\Application\Sonata\TimelineBundle\Entity\Action``.
 
-Enable the extended Bundle
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
+    If you are not using Symfony Flex, the namespace will be ``Application\Sonata\TimelineBundle\Entity``.
+
+
+Now, add the new ``Application`` Bundle into the ``bundles.php``:
 
 .. code-block:: php
 
     <?php
+
+    // config/bundles.php
+
+    return [
+        //...
+        App\Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle::class => ['all' => true],
+    ];
+
+.. note::
+    If you are not using Symfony Flex, add the new ``Application`` Bundle into your
+    ``AppKernel.php``.
+
+.. code-block:: php
+
+    <?php
+
     // app/AppKernel.php
 
-    public function registerBundles()
-    {
-        return array(
-            // ...
+    class AppKernel {
+        public function registerbundles()
+        {
+            return array(
+                // Application Bundles
+                // ...
+                new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(),
+                // ...
 
-            // Application Bundles
-            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(),
-
-            // ...
-        );
+            )
+        }
     }
 
 Update the Database Schema
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
-    $ app/console doctrine:schema:update --force
+    $ bin/console doctrine:schema:update --force
 
 Enable the Timeline Block
 -------------------------
@@ -132,7 +182,7 @@ Enable the Timeline Block
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata.yaml
 
         sonata_block:
             blocks:
@@ -141,14 +191,16 @@ Enable the Timeline Block
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata.yaml
 
         sonata_admin:
             dashboard:
                 blocks:
                     # ...
                     - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
-
+.. note::
+    If you are not using Symfony Flex, this configuration should be added
+    to ``app/config/config.yml``.
 
 Edit the Timeline Block
 -----------------------
@@ -165,13 +217,17 @@ And then edit the sonata_admin definition here, adding the "template" option.
 
   .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata.yaml
 
         sonata_admin:
             dashboard:
                 blocks:
                     # ...
                     - { position: center, type: sonata.timeline.block.timeline, settings: { template: '@ApplicationTimeline/Block/timeline.html.twig', context: SONATA_ADMIN, max_per_page: 25 }}
+
+.. note::
+    If you are not using Symfony Flex, this configuration should be added
+    to ``app/config/config.yml``.
 
 And now, you're good to go !
 
