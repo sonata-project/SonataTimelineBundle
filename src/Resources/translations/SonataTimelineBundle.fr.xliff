@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="7">
                 <source>no_action</source>
-                <target>Aucune action actuellement...</target>
+                <target>Aucune action actuellement.</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>element_deleted</source>
