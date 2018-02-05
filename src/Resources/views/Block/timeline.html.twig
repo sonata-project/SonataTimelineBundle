@@ -28,55 +28,63 @@ file that was distributed with this source code.
         {% endif %}
 
         <div class="panel-body">
+            <ul class="timeline">
+                {% for entry in entries %}
+                    {% if currentDay is not defined or currentDay != entry.createdAt|format_date %}
+                        {% set currentDay = entry.createdAt|format_date %}
+                        <li class="time-label">
+                            <span class="bg-red">{{ currentDay }}</span>
+                        </li>
+                    {% endif %}
 
-            {% sonata_template_box 'This is the timeline block.' %}
+                    {% set subject = entry.getComponent('subject') %}
+                    {% set target = entry.getComponent('target') %}
+                    {% set target_text_component = entry.getComponent('target_text') %}
 
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="timeline">
-                        {% for entry in entries %}
+                    {% if subject.data %}
+                        {% set subject_text = sonata_timeline_generate_link(subject, entry) %}
+                    {% else %}
+                        {% set target_text %}
+                            <abbr title="{{ 'element_reference_deleted'|trans({'%reference%': subject.hash}, "SonataTimelineBundle") }}">
+                                {{ 'element_deleted'|trans({}, "SonataTimelineBundle") }}
+                            </abbr>
+                        {% endset %}
+                    {% endif %}
 
-                            {% if currentDay is not defined or currentDay != entry.createdAt|format_date %}
-                                {% set currentDay = entry.createdAt|format_date %}
-                                <li class="time-label">
-                                    <span class="bg-red">{{ currentDay }}</span>
-                                </li>
-                            {% endif %}
+                    {% if target.data is defined and target.data is not empty %}
+                        {% set target_text = sonata_timeline_generate_link(target, entry) %}
+                    {% elseif target_text_component %}
+                        {% set target_text %}
+                            <abbr title="{{ 'element_deleted'|trans({}, "SonataTimelineBundle") }}">
+                                {{ target_text_component }}
+                            </abbr>
+                        {% endset %}
+                    {% else %}
+                        {% set target_text %}
+                            <abbr title="{{ 'element_reference_deleted'|trans({'%reference%': target.hash}, "SonataTimelineBundle") }}">
+                                {{ 'element_deleted'|trans({}, "SonataTimelineBundle") }}
+                            </abbr>
+                        {% endset %}
+                    {% endif %}
 
-                            {% set subject = entry.getComponent('subject') %}
-                            {% set target = entry.getComponent('target') %}
-                            {% set target_text_component = entry.getComponent('target_text') %}
+                    {% set verb = "actions."~entry.verb %}
+                    {% set icon = "actions.icon."~entry.verb %}
 
-                            {% if subject.data %}
-                                {% set subject_text = sonata_timeline_generate_link(subject, entry) %}
-                            {% else %}
-                                {% set subject_text = '<abbr title="' ~ 'element_reference_deleted'|trans({'%reference%': target.hash}, "SonataTimelineBundle") ~ '">' ~ 'element_deleted'|trans({}, "SonataTimelineBundle") ~ '</abbr>' %}
-                            {% endif %}
-
-                            {% if target.data is defined and target.data is not empty %}
-                                {% set target_text = sonata_timeline_generate_link(target, entry) %}
-                            {% elseif target_text_component %}
-                                {% set target_text = '<abbr title="' ~ 'element_deleted'|trans({}, "SonataTimelineBundle") ~ '">'~target_text_component~'</abbr>' %}
-                            {% else %}
-                                {% set target_text = '<abbr title="' ~ 'element_reference_deleted'|trans({'%reference%': target.hash}, "SonataTimelineBundle") ~ '">' ~ 'element_deleted'|trans({}, "SonataTimelineBundle") ~ '</abbr>' %}
-                            {% endif %}
-
-                            {% set verb = "actions."~entry.verb %}
-                            {% set icon = "actions.icon."~entry.verb %}
-
-                            <li>
-                                <i class="{{ icon|trans({}, "SonataTimelineBundle") }}"></i>
-                                <div class="timeline-item" style="background: #f3f4f5;">
-                                    <span class="time"><i class="fa fa-clock-o"></i> {{ entry.createdAt|format_time }}</span>
-                                    <div class="timeline-body" style="border-bottom: none;">{{ verb|trans({'%subject%': subject_text, '%target%': target_text}, "SonataTimelineBundle")|raw }}</div>
-                                </div>
-                            </li>
-                        {% else %}
-                            {{ 'no_action'|trans({}, "SonataTimelineBundle") }}
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
+                    <li>
+                        <i class="{{ icon|trans({}, "SonataTimelineBundle") }}"></i>
+                        <div class="timeline-item" style="background: #f3f4f5;">
+                            <span class="time">
+                                <i class="fa fa-clock-o"></i> {{ entry.createdAt|format_time }}
+                            </span>
+                            <div class="timeline-body" style="border-bottom: none;">
+                                {{ verb|trans({'%subject%': subject_text, '%target%': target_text}, "SonataTimelineBundle")|raw }}
+                            </div>
+                        </div>
+                    </li>
+                {% else %}
+                    <p>{{ 'no_action'|trans({}, "SonataTimelineBundle") }}</p>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}
