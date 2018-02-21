@@ -28,7 +28,15 @@
         "sonata-project/easy-extends-bundle": "^2.2",
         "sonata-project/intl-bundle": "^2.2",
         "stephpy/timeline-bundle": "^2.3 || ^3.0",
-        "symfony/doctrine-bridge": "^2.8 || ^3.2 || ^4.0"
+        "symfony/config": "^2.8 || ^3.2 || ^4.0",
+        "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+        "symfony/doctrine-bridge": "^2.8 || ^3.2 || ^4.0",
+        "symfony/form": "^2.8 || ^3.2 || ^4.0",
+        "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
+        "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
+        "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
+        "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
+        "symfony/security-core": "^2.8 || ^3.2 || ^4.0"
     },
     "conflict": {
         "sonata-project/admin-bundle": "<3.1 || >=4.0"
