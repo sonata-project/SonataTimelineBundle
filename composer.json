@@ -24,9 +24,9 @@
         "php": "^5.6 || ^7.0",
         "doctrine/orm": "^2.2",
         "sonata-project/block-bundle": "^3.11",
-        "sonata-project/core-bundle": "^3.0",
-        "sonata-project/easy-extends-bundle": "^2.2",
-        "sonata-project/intl-bundle": "^2.2",
+        "sonata-project/core-bundle": "^3.9",
+        "sonata-project/easy-extends-bundle": "^2.5",
+        "sonata-project/intl-bundle": "^2.4",
         "stephpy/timeline-bundle": "^2.3 || ^3.0",
         "symfony/config": "^2.8 || ^3.2 || ^4.0",
         "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
@@ -39,12 +39,12 @@
         "symfony/security-core": "^2.8 || ^3.2 || ^4.0"
     },
     "conflict": {
-        "sonata-project/admin-bundle": "<3.1 || >=4.0"
+        "sonata-project/admin-bundle": "<3.31 || >=4.0"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
-        "sonata-project/admin-bundle": "^3.1",
-        "symfony/phpunit-bridge": "^3.3 || ^4.0"
+        "sonata-project/admin-bundle": "^3.31",
+        "symfony/phpunit-bridge": "^4.0"
     },
     "config": {
         "sort-packages": true
