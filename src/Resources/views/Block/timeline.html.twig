@@ -42,7 +42,7 @@ file that was distributed with this source code.
                     {% set target_text_component = entry.getComponent('target_text') %}
 
                     {% if subject.data %}
-                        {% set subject_text = sonata_timeline_generate_link(subject, entry) %}
+                        {% set subject_text = sonata_timeline_generate_link(subject) %}
                     {% else %}
                         {% set target_text %}
                             <abbr title="{{ 'element_reference_deleted'|trans({'%reference%': subject.hash}, "SonataTimelineBundle") }}">
