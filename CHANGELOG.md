@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.1](https://github.com/sonata-project/SonataTimelineBundle/compare/3.3.0...3.3.1) - 2018-05-08
+
+### Fixed
+
+- Fix the subject generated link.
+- Fix the `subject_text` when data is empty.
+
+### Added
+- Added support for `timeline-bundle` 3.0
+
 ## [3.3.0](https://github.com/sonata-project/SonataTimelineBundle/compare/3.2.0...3.3.0) - 2018-02-08
 ### Added
 - added block title translation domain option
