@@ -17,8 +17,4 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataTimelineBundle extends Bundle
 {
-    public function getParent()
-    {
-        return 'SpyTimelineBundle';
-    }
 }
