@@ -62,7 +62,7 @@ class AdminSpread implements SpreadInterface
      */
     public function supports(ActionInterface $action)
     {
-        return in_array($action->getVerb(), $this->supportedVerbs);
+        return \in_array($action->getVerb(), $this->supportedVerbs);
     }
 
     /**
@@ -73,7 +73,7 @@ class AdminSpread implements SpreadInterface
         $users = $this->getUsers();
 
         foreach ($users as $user) {
-            $collection->add(new EntryUnaware(get_class($user[0]), $user[0]->getId()), 'SONATA_ADMIN');
+            $collection->add(new EntryUnaware(\get_class($user[0]), $user[0]->getId()), 'SONATA_ADMIN');
         }
     }
 
