@@ -42,7 +42,7 @@
         "sonata-project/admin-bundle": "<3.31 || >=4.0"
     },
     "require-dev": {
-        "matthiasnoback/symfony-dependency-injection-test": "^1.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^3.0",
         "sonata-project/admin-bundle": "^3.31",
         "symfony/phpunit-bridge": "^4.1"
     },
