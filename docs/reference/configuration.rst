@@ -11,15 +11,16 @@ Full Configuration Options
 
     .. code-block:: yaml
 
-        # Default configuration for extension with alias: "sonata_timeline"
+        # config/packages/sonata_timeline.yaml
+
         sonata_timeline:
-            manager_type:         orm
+            manager_type: orm
             class:
-                component:            '%spy_timeline.class.component%'
-                actionComponent:      ~
-                action_component:     '%spy_timeline.class.action_component%'
-                action:               '%spy_timeline.class.action%'
-                timeline:             '%spy_timeline.class.timeline%'
+                component:        '%spy_timeline.class.component%'
+                actionComponent:  ~
+                action_component: '%spy_timeline.class.action_component%'
+                action:           '%spy_timeline.class.action%'
+                timeline:         '%spy_timeline.class.timeline%'
 
 Customize the Timeline Block
 ----------------------------
@@ -30,7 +31,7 @@ You can customize the ``title`` (default: ``Latest Actions``) of the block by us
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata_admin.yaml
 
         sonata_admin:
             dashboard:
@@ -44,11 +45,10 @@ You can customize the ``icon`` (default: ``<i class="fa fa-clock-o fa-fw"></i>``
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata_admin.yaml
 
         sonata_admin:
             dashboard:
                 blocks:
                     # ...
                     - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25, icon: '<i class="fa fa-flag-o fa-fw"></i>' }}
-

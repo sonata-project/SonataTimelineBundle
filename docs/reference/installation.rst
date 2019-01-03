@@ -17,11 +17,7 @@ Alternatively, you could add a dependency into your ``composer.json`` file direc
 
     This will install the SpyTimelineBundle_, too.
 
-Now, enable the bundle in ``bundles.php`` file:
-
-.. code-block:: php
-
-    <?php
+Now, enable the bundle in ``bundles.php`` file::
 
     // config/bundles.php
 
@@ -33,12 +29,12 @@ Now, enable the bundle in ``bundles.php`` file:
     ];
 
 .. note::
+
     If you are not using Symfony Flex, you should enable bundles in your
     ``AppKernel.php``.
 
 .. code-block:: php
 
-    <?php
     // app/AppKernel.php
 
     public function registerBundles()
@@ -57,6 +53,7 @@ Configuration
 -------------
 
 .. note::
+
     If you are not using Symfony Flex, all configuration in this section should
     be added to ``app/config/config.yml``.
 
@@ -80,13 +77,14 @@ SpyTimelineBundle Configuration
 
         filters:
             data_hydrator:
-                priority:             20
-                service:              spy_timeline.filter.data_hydrator
-                filter_unresolved:    false
+                priority:          20
+                service:           spy_timeline.filter.data_hydrator
+                filter_unresolved: false
                 locators:
                     - spy_timeline.filter.data_hydrator.locator.doctrine_orm
 
 .. note::
+
     If you are not using Symfony Flex, add classes without the ``App\``
     part.
 
@@ -95,7 +93,7 @@ SonataTimelineBundle Configuration
 
 .. code-block:: yaml
 
-    # config/packages/sonata.yaml
+    # config/packages/sonata_timeline.yaml
 
     sonata_timeline:
         manager_type:         orm
@@ -116,6 +114,7 @@ generate the correct entities for the timeline:
     $ bin/console sonata:easy-extends:generate SonataTimelineBundle --dest=src --namespace_prefix=App
 
 .. note::
+
     If you are not using Symfony Flex, use command without ``--namespace_prefix=App``.
 
 With provided parameters, the files are generated in ``src/Application/Sonata/TimelineBundle``.
@@ -129,14 +128,11 @@ With provided parameters, the files are generated in ``src/Application/Sonata/Ti
     ``App\Application\Sonata\TimelineBundle\Entity\Action``.
 
 .. note::
+
     If you are not using Symfony Flex, the namespace will be ``Application\Sonata\TimelineBundle\Entity``.
 
 
-Now, add the new ``Application`` Bundle into the ``bundles.php``:
-
-.. code-block:: php
-
-    <?php
+Now, add the new ``Application`` Bundle into the ``bundles.php``::
 
     // config/bundles.php
 
@@ -146,12 +142,11 @@ Now, add the new ``Application`` Bundle into the ``bundles.php``:
     ];
 
 .. note::
+
     If you are not using Symfony Flex, add the new ``Application`` Bundle into your
     ``AppKernel.php``.
 
 .. code-block:: php
-
-    <?php
 
     // app/AppKernel.php
 
@@ -182,7 +177,7 @@ Enable the Timeline Block
 
     .. code-block:: yaml
 
-        # config/packages/sonata.yaml
+        # config/packages/sonata_block.yaml
 
         sonata_block:
             blocks:
@@ -191,14 +186,16 @@ Enable the Timeline Block
 
     .. code-block:: yaml
 
-        # config/packages/sonata.yaml
+        # config/packages/sonata_admin.yaml
 
         sonata_admin:
             dashboard:
                 blocks:
                     # ...
                     - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+
 .. note::
+
     If you are not using Symfony Flex, this configuration should be added
     to ``app/config/config.yml``.
 
@@ -217,7 +214,7 @@ And then edit the sonata_admin definition here, adding the "template" option.
 
   .. code-block:: yaml
 
-        # config/packages/sonata.yaml
+        # config/packages/sonata_admin.yaml
 
         sonata_admin:
             dashboard:
@@ -226,6 +223,7 @@ And then edit the sonata_admin definition here, adding the "template" option.
                     - { position: center, type: sonata.timeline.block.timeline, settings: { template: '@ApplicationTimeline/Block/timeline.html.twig', context: SONATA_ADMIN, max_per_page: 25 }}
 
 .. note::
+
     If you are not using Symfony Flex, this configuration should be added
     to ``app/config/config.yml``.
 
