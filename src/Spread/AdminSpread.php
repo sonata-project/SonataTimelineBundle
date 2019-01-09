@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -66,7 +68,7 @@ class AdminSpread implements SpreadInterface
     /**
      * {@inheritdoc}
      */
-    public function process(ActionInterface $action, EntryCollection $collection)
+    public function process(ActionInterface $action, EntryCollection $collection): void
     {
         $users = $this->getUsers();
 
