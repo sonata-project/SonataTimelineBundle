@@ -77,7 +77,7 @@ class SonataTimelineExtensionTest extends TestCase
             ->with($this->anything())
             ->will($this->returnValue('Text'));
 
-        $this->assertEquals('<a href="acme/demo/2/edit">Text</a>', $this->twigExtension->generateLink($component, $action));
+        $this->assertSame('<a href="acme/demo/2/edit">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
     public function testGenerateLinkDisabledEdit()
@@ -111,7 +111,7 @@ class SonataTimelineExtensionTest extends TestCase
             ->with($this->anything())
             ->will($this->returnValue('Text'));
 
-        $this->assertEquals('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
+        $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
     public function testGenerateLinkNoEditPermission()
@@ -149,7 +149,7 @@ class SonataTimelineExtensionTest extends TestCase
             ->with($this->anything())
             ->will($this->returnValue('Text'));
 
-        $this->assertEquals('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
+        $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
     public function testGenerateLinkDisabledEditAndShow()
@@ -174,6 +174,6 @@ class SonataTimelineExtensionTest extends TestCase
             ->with($this->anything())
             ->will($this->returnValue('Text'));
 
-        $this->assertEquals('Text', $this->twigExtension->generateLink($component, $action));
+        $this->assertSame('Text', $this->twigExtension->generateLink($component, $action));
     }
 }
