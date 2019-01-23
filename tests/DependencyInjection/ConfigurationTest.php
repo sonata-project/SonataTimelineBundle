@@ -39,6 +39,6 @@ class ConfigurationTest extends TestCase
             'manager_type' => 'orm',
         ];
 
-        $this->assertEquals($expected, $configuration);
+        $this->assertSame($expected, $configuration);
     }
 }
