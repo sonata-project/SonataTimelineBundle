@@ -62,7 +62,7 @@ class AdminSpread implements SpreadInterface
      */
     public function supports(ActionInterface $action)
     {
-        return \in_array($action->getVerb(), $this->supportedVerbs);
+        return \in_array($action->getVerb(), $this->supportedVerbs, true);
     }
 
     /**
