@@ -120,7 +120,7 @@ class AdminSpreadTest extends TestCase
             }
         }
 
-        $this->assertEquals(5, $usersCount / 2, 'Should return 5 users for 2 iterations');
+        $this->assertSame(5, $usersCount / 2, 'Should return 5 users for 2 iterations');
     }
 
     /**
