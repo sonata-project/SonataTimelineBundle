@@ -48,6 +48,7 @@ class SonataTimelineExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('timeline.xml');
+        $loader->load(sprintf('timeline_%s.xml', $config['manager_type']));
 
         // NEXT_MAJOR: Go back to simple xml configuration when bumping requirements to SF 2.6+
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
@@ -107,6 +108,7 @@ class SonataTimelineExtension extends Extension
         $container->setParameter(sprintf('sonata.timeline.admin.action.%s', $modelType), $config['class']['action']);
         $container->setParameter(sprintf('sonata.timeline.admin.action_component.%s', $modelType), $config['class']['action_component']);
         $container->setParameter(sprintf('sonata.timeline.admin.component.%s', $modelType), $config['class']['component']);
+        $container->setParameter(sprintf('sonata.timeline.admin.user.%s', $modelType), $config['class']['user']);
     }
 
     /**

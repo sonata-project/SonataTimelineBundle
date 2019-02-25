@@ -20,7 +20,9 @@ class SonataTimelineExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoadDefault()
     {
-        $this->load();
+        $this->load(['class' => [
+            'user' => 'App\Entity\User',
+        ]]);
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('sonata.timeline.admin.extension', 1);
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('sonata.timeline.block.timeline', 4);
