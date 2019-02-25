@@ -35,6 +35,7 @@ class ConfigurationTest extends TestCase
                 'component' => '%spy_timeline.class.component%',
                 'action' => '%spy_timeline.class.action%',
                 'timeline' => '%spy_timeline.class.timeline%',
+                'user' => '%sonata.user.admin.user.entity%',
             ],
             'manager_type' => 'orm',
         ];

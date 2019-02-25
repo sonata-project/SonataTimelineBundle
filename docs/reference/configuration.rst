@@ -21,6 +21,7 @@ Full Configuration Options
                 action_component: '%spy_timeline.class.action_component%'
                 action:           '%spy_timeline.class.action%'
                 timeline:         '%spy_timeline.class.timeline%'
+                user:             '%sonata.user.admin.user.entity%'
 
 Customize the Timeline Block
 ----------------------------

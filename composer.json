@@ -39,11 +39,13 @@
         "symfony/security-core": "^2.8 || ^3.2 || ^4.0"
     },
     "conflict": {
-        "sonata-project/admin-bundle": "<3.31 || >=4.0"
+        "sonata-project/admin-bundle": "<3.31 || >=4.0",
+        "sonata-project/user-bundle": "<4.3"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^3.1",
         "sonata-project/admin-bundle": "^3.31",
+        "sonata-project/user-bundle": "^4.3",
         "symfony/phpunit-bridge": "^4.2"
     },
     "config": {
