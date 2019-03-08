@@ -17,7 +17,6 @@ Full Configuration Options
             manager_type: orm
             class:
                 component:        '%spy_timeline.class.component%'
-                actionComponent:  ~
                 action_component: '%spy_timeline.class.action_component%'
                 action:           '%spy_timeline.class.action%'
                 timeline:         '%spy_timeline.class.timeline%'
