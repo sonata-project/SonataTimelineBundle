@@ -65,6 +65,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                     ->children()
                         ->scalarNode('component')->defaultValue('%spy_timeline.class.component%')->cannotBeEmpty()->end()
+                        // NEXT_MAJOR: Remove this key
                         ->scalarNode('actionComponent')->end()
                         ->scalarNode('action_component')->defaultValue('%spy_timeline.class.action_component%')->cannotBeEmpty()->end() // fix the actionComponent deprecated parameter ...
                         ->scalarNode('action')->defaultValue('%spy_timeline.class.action%')->cannotBeEmpty()->end()
