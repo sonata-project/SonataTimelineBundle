@@ -65,10 +65,13 @@ class Configuration implements ConfigurationInterface
                     ->end()
                     ->children()
                         ->scalarNode('component')->defaultValue('%spy_timeline.class.component%')->cannotBeEmpty()->end()
+                        // NEXT_MAJOR: Remove this key
                         ->scalarNode('actionComponent')->end()
                         ->scalarNode('action_component')->defaultValue('%spy_timeline.class.action_component%')->cannotBeEmpty()->end() // fix the actionComponent deprecated parameter ...
                         ->scalarNode('action')->defaultValue('%spy_timeline.class.action%')->cannotBeEmpty()->end()
                         ->scalarNode('timeline')->defaultValue('%spy_timeline.class.timeline%')->cannotBeEmpty()->end()
+                        // NEXT_MAJOR: Change this to App\Entity\User
+                        ->scalarNode('user')->defaultValue('%sonata.user.admin.user.entity%')->cannotBeEmpty()->end()
                     ->end()
                 ->end()
             ->end();

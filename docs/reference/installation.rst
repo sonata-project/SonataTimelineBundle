@@ -71,6 +71,7 @@ SonataTimelineBundle Configuration
             action:           '%spy_timeline.class.action%'
             component:        '%spy_timeline.class.component%'
             action_component: '%spy_timeline.class.action_component%'
+            user:             '%sonata.user.admin.user.entity%'
 
 Extend the Bundle
 -----------------
