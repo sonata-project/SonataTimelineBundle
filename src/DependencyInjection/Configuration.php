@@ -53,10 +53,10 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('class')
                     ->beforeNormalization()
-                        ->ifTrue(function ($v) {
+                        ->ifTrue(static function ($v) {
                             return isset($v['actionComponent']);
                         })
-                        ->then(function ($v) {
+                        ->then(static function ($v) {
                             $v['action_component'] = $v['actionComponent'];
                             unset($v['actionComponent']);
 
