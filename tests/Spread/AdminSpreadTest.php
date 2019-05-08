@@ -102,7 +102,7 @@ class AdminSpreadTest extends TestCase
             ->disableOriginalConstructor()
             ->setMethods(['getUsers'])
             ->getMock();
-        $spread->expects($this->any())->method('getUsers')->will($this->returnValue($this->getFakeUsers()));
+        $spread->expects($this->any())->method('getUsers')->willReturn($this->getFakeUsers());
 
         $collection = new EntryCollection();
         $spread->process($action, $collection);
