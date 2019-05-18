@@ -45,7 +45,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->pool->expects($this->any())
             ->method('getAdminByClass')
             ->with($this->equalTo('Acme\DemoBundle\Model\Demo'))
-            ->will($this->returnValue($this->admin));
+            ->willReturn($this->admin);
 
         $this->twigExtension = new SonataTimelineExtension($this->pool);
     }
@@ -61,21 +61,21 @@ class SonataTimelineExtensionTest extends TestCase
         $this->admin->expects($this->once())
             ->method('hasRoute')
             ->with($this->equalTo('edit'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->admin->expects($this->once())
             ->method('isGranted')
             ->with($this->equalTo('EDIT'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->admin->expects($this->once())
             ->method('generateObjectUrl')
             ->with($this->equalTo('edit'), $this->anything())
-            ->will($this->returnValue('acme/demo/2/edit'));
+            ->willReturn('acme/demo/2/edit');
 
         $this->admin->expects($this->once())
             ->method('toString')
             ->with($this->anything())
-            ->will($this->returnValue('Text'));
+            ->willReturn('Text');
 
         $this->assertSame('<a href="acme/demo/2/edit">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
@@ -91,25 +91,25 @@ class SonataTimelineExtensionTest extends TestCase
         $this->admin->expects($this->at(0))
             ->method('hasRoute')
             ->with($this->equalTo('edit'))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->admin->expects($this->at(1))
             ->method('hasRoute')
             ->with($this->equalTo('show'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->admin->expects($this->at(2))
             ->method('isGranted')
             ->with($this->equalTo('SHOW'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->admin->expects($this->once())
             ->method('generateObjectUrl')
             ->with($this->equalTo('show'), $this->anything())
-            ->will($this->returnValue('acme/demo/2/show'));
+            ->willReturn('acme/demo/2/show');
 
         $this->admin->expects($this->once())
             ->method('toString')
             ->with($this->anything())
-            ->will($this->returnValue('Text'));
+            ->willReturn('Text');
 
         $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
@@ -125,29 +125,29 @@ class SonataTimelineExtensionTest extends TestCase
         $this->admin->expects($this->at(0))
             ->method('hasRoute')
             ->with($this->equalTo('edit'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->admin->expects($this->at(1))
             ->method('isGranted')
             ->with($this->equalTo('EDIT'))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->admin->expects($this->at(2))
             ->method('hasRoute')
             ->with($this->equalTo('show'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->admin->expects($this->at(3))
             ->method('isGranted')
             ->with($this->equalTo('SHOW'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->admin->expects($this->once())
             ->method('generateObjectUrl')
             ->with($this->equalTo('show'), $this->anything())
-            ->will($this->returnValue('acme/demo/2/show'));
+            ->willReturn('acme/demo/2/show');
 
         $this->admin->expects($this->once())
             ->method('toString')
             ->with($this->anything())
-            ->will($this->returnValue('Text'));
+            ->willReturn('Text');
 
         $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
@@ -163,16 +163,16 @@ class SonataTimelineExtensionTest extends TestCase
         $this->admin->expects($this->at(0))
             ->method('hasRoute')
             ->with($this->equalTo('edit'))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $this->admin->expects($this->at(1))
             ->method('hasRoute')
             ->with($this->equalTo('show'))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->admin->expects($this->once())
             ->method('toString')
             ->with($this->anything())
-            ->will($this->returnValue('Text'));
+            ->willReturn('Text');
 
         $this->assertSame('Text', $this->twigExtension->generateLink($component, $action));
     }
