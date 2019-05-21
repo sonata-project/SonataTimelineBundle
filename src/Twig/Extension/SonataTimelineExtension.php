@@ -17,8 +17,10 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class SonataTimelineExtension extends \Twig_Extension
+class SonataTimelineExtension extends AbstractExtension
 {
     /**
      * @var Pool
@@ -39,7 +41,7 @@ class SonataTimelineExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('sonata_timeline_generate_link', [$this, 'generateLink'], ['is_safe' => ['html']]),
+            new TwigFunction('sonata_timeline_generate_link', [$this, 'generateLink'], ['is_safe' => ['html']]),
         ];
     }
 
