@@ -53,9 +53,6 @@ class TimelineBlock extends AbstractAdminBlockService
      * NEXT_MAJOR: Go back to signature class check when bumping requirements to SF 2.6+.
      *
      * @param string                                         $name
-     * @param EngineInterface                                $templating
-     * @param ActionManagerInterface                         $actionManager
-     * @param TimelineManagerInterface                       $timelineManager
      * @param TokenStorageInterface|SecurityContextInterface $tokenStorage
      */
     public function __construct($name, EngineInterface $templating, ActionManagerInterface $actionManager, TimelineManagerInterface $timelineManager, $tokenStorage)
