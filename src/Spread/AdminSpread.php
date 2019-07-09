@@ -48,8 +48,7 @@ class AdminSpread implements SpreadInterface
     protected $userClass;
 
     /**
-     * @param RegistryInterface $registry
-     * @param string            $userClass
+     * @param string $userClass
      */
     public function __construct(RegistryInterface $registry, $userClass)
     {
