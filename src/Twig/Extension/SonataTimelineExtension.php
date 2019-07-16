@@ -54,9 +54,6 @@ class SonataTimelineExtension extends AbstractExtension
     }
 
     /**
-     * @param ComponentInterface   $component
-     * @param ActionInterface|null $action
-     *
      * @return string
      */
     public function generateLink(ComponentInterface $component, ActionInterface $action = null)
@@ -85,9 +82,6 @@ class SonataTimelineExtension extends AbstractExtension
     }
 
     /**
-     * @param ComponentInterface   $component
-     * @param ActionInterface|null $action
-     *
      * @return AdminInterface
      */
     protected function getAdmin(ComponentInterface $component, ActionInterface $action = null)

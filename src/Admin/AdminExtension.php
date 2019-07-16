@@ -35,7 +35,6 @@ class AdminExtension extends AbstractAdminExtension
     /**
      * NEXT_MAJOR: Go back to signature class check when bumping requirements to SF 2.6+.
      *
-     * @param ActionManagerInterface                         $actionManager
      * @param TokenStorageInterface|SecurityContextInterface $tokenStorage
      */
     public function __construct(ActionManagerInterface $actionManager, $tokenStorage)
@@ -92,8 +91,7 @@ class AdminExtension extends AbstractAdminExtension
     }
 
     /**
-     * @param AdminInterface $admin
-     * @param mixed          $object
+     * @param mixed $object
      *
      * @return ComponentInterface
      */
@@ -103,9 +101,8 @@ class AdminExtension extends AbstractAdminExtension
     }
 
     /**
-     * @param ComponentInterface $subject
-     * @param string             $verb
-     * @param array              $components
+     * @param string $verb
+     * @param array  $components
      */
     protected function create(ComponentInterface $subject, $verb, $components = []): void
     {

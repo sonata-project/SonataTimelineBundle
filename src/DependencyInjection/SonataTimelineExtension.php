@@ -72,8 +72,6 @@ class SonataTimelineExtension extends Extension
     }
 
     /**
-     * @param array $config
-     *
      * @return array
      */
     public function addDefaults(array $config)
@@ -93,8 +91,7 @@ class SonataTimelineExtension extends Extension
     }
 
     /**
-     * @param array            $config
-     * @param ContainerBuilder $container
+     * @param array $config
      */
     public function configureClass($config, ContainerBuilder $container): void
     {
@@ -111,9 +108,6 @@ class SonataTimelineExtension extends Extension
         $container->setParameter(sprintf('sonata.timeline.admin.user.%s', $modelType), $config['class']['user']);
     }
 
-    /**
-     * @param array $config
-     */
     public function registerDoctrineMapping(array $config): void
     {
         foreach ($config['class'] as $type => $class) {
