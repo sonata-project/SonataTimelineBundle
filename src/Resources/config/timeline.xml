@@ -4,7 +4,7 @@
         <service id="sonata.timeline.admin.extension" class="Sonata\TimelineBundle\Admin\AdminExtension">
             <tag name="sonata.admin.extension" global="true"/>
             <argument type="service" id="spy_timeline.action_manager"/>
-            <argument/>
+            <argument type="service" id="security.token_storage"/>
         </service>
         <service id="sonata.timeline.block.timeline" class="Sonata\TimelineBundle\Block\TimelineBlock">
             <tag name="sonata.block"/>
@@ -12,7 +12,7 @@
             <argument type="service" id="sonata.templating"/>
             <argument type="service" id="spy_timeline.action_manager"/>
             <argument type="service" id="spy_timeline.timeline_manager"/>
-            <argument/>
+            <argument type="service" id="security.token_storage"/>
         </service>
         <service id="sonata.timeline.twig.extension" class="Sonata\TimelineBundle\Twig\Extension\SonataTimelineExtension">
             <tag name="twig.extension"/>

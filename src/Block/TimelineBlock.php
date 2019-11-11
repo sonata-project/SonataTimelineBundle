@@ -27,7 +27,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -45,22 +44,15 @@ class TimelineBlock extends AbstractAdminBlockService
     protected $timelineManager;
 
     /**
-     * @var TokenStorageInterface|SecurityContextInterface
+     * @var TokenStorageInterface
      */
     protected $securityContext;
 
     /**
-     * NEXT_MAJOR: Go back to signature class check when bumping requirements to SF 2.6+.
-     *
-     * @param string                                         $name
-     * @param TokenStorageInterface|SecurityContextInterface $tokenStorage
+     * @param string $name
      */
-    public function __construct($name, EngineInterface $templating, ActionManagerInterface $actionManager, TimelineManagerInterface $timelineManager, $tokenStorage)
+    public function __construct($name, EngineInterface $templating, ActionManagerInterface $actionManager, TimelineManagerInterface $timelineManager, TokenStorageInterface $tokenStorage)
     {
-        if (!$tokenStorage instanceof TokenStorageInterface && !$tokenStorage instanceof SecurityContextInterface) {
-            throw new \InvalidArgumentException('Argument 5 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
-        }
-
         $this->actionManager = $actionManager;
         $this->timelineManager = $timelineManager;
         $this->securityContext = $tokenStorage;
