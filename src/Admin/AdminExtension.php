@@ -18,7 +18,6 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class AdminExtension extends AbstractAdminExtension
 {
@@ -28,21 +27,12 @@ class AdminExtension extends AbstractAdminExtension
     protected $actionManager;
 
     /**
-     * @var TokenStorageInterface|SecurityContextInterface
+     * @var TokenStorageInterface
      */
     protected $securityContext;
 
-    /**
-     * NEXT_MAJOR: Go back to signature class check when bumping requirements to SF 2.6+.
-     *
-     * @param TokenStorageInterface|SecurityContextInterface $tokenStorage
-     */
-    public function __construct(ActionManagerInterface $actionManager, $tokenStorage)
+    public function __construct(ActionManagerInterface $actionManager, TokenStorageInterface $tokenStorage)
     {
-        if (!$tokenStorage instanceof TokenStorageInterface && !$tokenStorage instanceof SecurityContextInterface) {
-            throw new \InvalidArgumentException('Argument 2 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
-        }
-
         $this->actionManager = $actionManager;
         $this->securityContext = $tokenStorage;
     }
