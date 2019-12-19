@@ -27,7 +27,6 @@
         "sonata-project/block-bundle": "^3.17",
         "sonata-project/core-bundle": "^3.9",
         "sonata-project/easy-extends-bundle": "^2.5",
-        "sonata-project/intl-bundle": "^2.4",
         "stephpy/timeline-bundle": "^2.3 || ^3.0",
         "symfony/config": "^4.3",
         "symfony/dependency-injection": "^4.3",
@@ -38,7 +37,9 @@
         "symfony/http-kernel": "^4.3",
         "symfony/options-resolver": "^4.3",
         "symfony/security-core": "^4.3",
-        "twig/twig": "^1.35 || ^2.4"
+        "twig/extra-bundle": "^3.0",
+        "twig/intl-extra": "^3.0",
+        "twig/twig": "^2.12 || ^3.0"
     },
     "conflict": {
         "sonata-project/admin-bundle": "<3.56.1 || >=4.0",
