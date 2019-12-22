@@ -17,12 +17,9 @@ use PHPUnit\Framework\TestCase;
 use Sonata\TimelineBundle\DependencyInjection\Configuration;
 use Symfony\Component\Config\Definition\Processor;
 
-/**
- * Class ConfigurationTest.
- */
 class ConfigurationTest extends TestCase
 {
-    public function testBCCode()
+    public function testBCCode(): void
     {
         $processor = new Processor();
         $configuration = $processor->processConfiguration(new Configuration(), [[
