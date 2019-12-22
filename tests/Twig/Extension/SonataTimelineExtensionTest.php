@@ -37,12 +37,12 @@ class SonataTimelineExtensionTest extends TestCase
      */
     private $admin;
 
-    public function setUp()
+    protected function setUp(): void
     {
-        $this->admin = $this->createMock('Sonata\AdminBundle\Admin\AdminInterface');
+        $this->admin = $this->createMock(AdminInterface::class);
 
-        $this->pool = $this->getMockBuilder('Sonata\AdminBundle\Admin\Pool')->disableOriginalConstructor()->getMock();
-        $this->pool->expects($this->any())
+        $this->pool = $this->createMock(Pool::class);
+        $this->pool
             ->method('getAdminByClass')
             ->with($this->equalTo('Acme\DemoBundle\Model\Demo'))
             ->willReturn($this->admin);
@@ -50,7 +50,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->twigExtension = new SonataTimelineExtension($this->pool);
     }
 
-    public function testGenerateLink()
+    public function testGenerateLink(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
@@ -80,7 +80,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->assertSame('<a href="acme/demo/2/edit">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
-    public function testGenerateLinkDisabledEdit()
+    public function testGenerateLinkDisabledEdit(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
@@ -114,7 +114,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
-    public function testGenerateLinkNoEditPermission()
+    public function testGenerateLinkNoEditPermission(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');
@@ -152,7 +152,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
-    public function testGenerateLinkDisabledEditAndShow()
+    public function testGenerateLinkDisabledEditAndShow(): void
     {
         $component = new Component();
         $component->setModel('Acme\DemoBundle\Model\Demo');

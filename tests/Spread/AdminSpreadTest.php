@@ -17,12 +17,10 @@ use PHPUnit\Framework\TestCase;
 use Sonata\TimelineBundle\Spread\AdminSpread;
 use Spy\Timeline\Model\Action;
 use Spy\Timeline\Spread\Entry\EntryCollection;
+use Spy\Timeline\Spread\Entry\EntryInterface;
+use Spy\Timeline\Spread\Entry\EntryUnaware;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
-/**
- * Class FakeUserEntity.
- *
- * This is a fake entity class
- */
 class FakeUserEntity
 {
     /**
@@ -30,35 +28,23 @@ class FakeUserEntity
      */
     protected $id;
 
-    /**
-     * @param $id
-     */
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 }
 
 /**
- * Class AdminSpreadTest.
- *
- * This is a unit test class for \Sonata\TimelineBundle\Spread\AdminSpread
- *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
 class AdminSpreadTest extends TestCase
 {
     /**
-     * AdminSpread supported verbs.
-     *
      * @var array
      */
     protected $supportedVerbs = [
@@ -67,13 +53,10 @@ class AdminSpreadTest extends TestCase
         'sonata.admin.delete',
     ];
 
-    /**
-     * Test supports() method with supported verbs and non-supported verbs.
-     */
-    public function testSupportsMethod()
+    public function testSupportsMethod(): void
     {
-        $registryMock = $this->createMock('\Symfony\Bridge\Doctrine\RegistryInterface');
-        $spread = new AdminSpread($registryMock, '\Sonata\TimelineBundle\Tests\Spread\FakeUserEntity');
+        $registryMock = $this->createMock(RegistryInterface::class);
+        $spread = new AdminSpread($registryMock, FakeUserEntity::class);
 
         // Test non-supported verbs
         $action = new Action();
@@ -90,19 +73,16 @@ class AdminSpreadTest extends TestCase
         }
     }
 
-    /**
-     * Test process() method in order to test that collection is well completed.
-     */
-    public function testProcessMethod()
+    public function testProcessMethod(): void
     {
         $action = new Action();
         $action->setVerb('a.not.supported.verb');
 
-        $spread = $this->getMockBuilder('\Sonata\TimelineBundle\Spread\AdminSpread')
+        $spread = $this->getMockBuilder(AdminSpread::class)
             ->disableOriginalConstructor()
             ->setMethods(['getUsers'])
             ->getMock();
-        $spread->expects($this->any())->method('getUsers')->willReturn($this->getFakeUsers());
+        $spread->method('getUsers')->willReturn($this->getFakeUsers());
 
         $collection = new EntryCollection();
         $spread->process($action, $collection);
@@ -111,24 +91,20 @@ class AdminSpreadTest extends TestCase
 
         $usersCount = 0;
 
+        /** @var EntryInterface[] $users */
         foreach ($collection->getIterator() as $users) {
             foreach ($users as $entry) {
                 ++$usersCount;
 
-                $this->assertInstanceOf('Spy\Timeline\Spread\Entry\EntryUnaware', $entry, 'Should return an instance of EntryUnaware');
-                $this->assertSame('Sonata\TimelineBundle\Tests\Spread\FakeUserEntity', $entry->getSubjectModel());
+                $this->assertInstanceOf(EntryUnaware::class, $entry, 'Should return an instance of EntryUnaware');
+                $this->assertSame(FakeUserEntity::class, $entry->getSubjectModel());
             }
         }
 
         $this->assertSame(5, $usersCount / 2, 'Should return 5 users for 2 iterations');
     }
 
-    /**
-     * Returns fake users.
-     *
-     * @return array
-     */
-    protected function getFakeUsers()
+    protected function getFakeUsers(): array
     {
         $users = [];
 

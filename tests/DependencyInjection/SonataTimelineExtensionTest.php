@@ -18,7 +18,7 @@ use Sonata\TimelineBundle\DependencyInjection\SonataTimelineExtension;
 
 class SonataTimelineExtensionTest extends AbstractExtensionTestCase
 {
-    public function testLoadDefault()
+    public function testLoadDefault(): void
     {
         $this->load(['class' => [
             'user' => 'App\Entity\User',
@@ -28,7 +28,7 @@ class SonataTimelineExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('sonata.timeline.block.timeline', 4);
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new SonataTimelineExtension(),
