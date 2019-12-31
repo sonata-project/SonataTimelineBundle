@@ -37,12 +37,12 @@ class SonataTimelineExtensionTest extends TestCase
      */
     private $admin;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
-        $this->admin = $this->createMock('Sonata\AdminBundle\Admin\AdminInterface');
+        $this->admin = $this->createMock(AdminInterface::class);
 
-        $this->pool = $this->getMockBuilder('Sonata\AdminBundle\Admin\Pool')->disableOriginalConstructor()->getMock();
-        $this->pool->expects($this->any())
+        $this->pool = $this->createMock(Pool::class);
+        $this->pool
             ->method('getAdminByClass')
             ->with($this->equalTo('Acme\DemoBundle\Model\Demo'))
             ->willReturn($this->admin);

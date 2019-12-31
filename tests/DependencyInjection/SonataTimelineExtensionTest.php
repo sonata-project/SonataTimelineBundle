@@ -28,7 +28,7 @@ class SonataTimelineExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('sonata.timeline.block.timeline', 4);
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new SonataTimelineExtension(),
