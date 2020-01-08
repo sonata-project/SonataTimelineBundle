@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\TimelineBundle\Spread;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Spread\Entry\EntryUnaware;
 use Spy\Timeline\Spread\SpreadInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class AdminSpread implements SpreadInterface
 {
@@ -38,7 +38,7 @@ class AdminSpread implements SpreadInterface
     ];
 
     /**
-     * @var RegistryInterface
+     * @var ManagerRegistry
      */
     protected $registry;
 
@@ -50,7 +50,7 @@ class AdminSpread implements SpreadInterface
     /**
      * @param string $userClass
      */
-    public function __construct(RegistryInterface $registry, $userClass)
+    public function __construct(ManagerRegistry $registry, $userClass)
     {
         $this->registry = $registry;
         $this->userClass = $userClass;

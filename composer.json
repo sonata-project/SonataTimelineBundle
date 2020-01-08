@@ -23,6 +23,7 @@
     "require": {
         "php": "^7.1",
         "doctrine/orm": "^2.2",
+        "doctrine/doctrine-bundle": "^1.12 || ^2",
         "sonata-project/block-bundle": "^3.11",
         "sonata-project/core-bundle": "^3.9",
         "sonata-project/easy-extends-bundle": "^2.5",
