@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\TimelineBundle\Tests\Spread;
 
+use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Sonata\TimelineBundle\Spread\AdminSpread;
 use Spy\Timeline\Model\Action;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Spread\Entry\EntryInterface;
 use Spy\Timeline\Spread\Entry\EntryUnaware;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class FakeUserEntity
 {
@@ -55,7 +55,7 @@ class AdminSpreadTest extends TestCase
 
     public function testSupportsMethod(): void
     {
-        $registryMock = $this->createMock(RegistryInterface::class);
+        $registryMock = $this->createMock(ManagerRegistry::class);
         $spread = new AdminSpread($registryMock, FakeUserEntity::class);
 
         // Test non-supported verbs

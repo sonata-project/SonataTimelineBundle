@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TimelineBundle\Spread;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Spread\Entry\EntryUnaware;
