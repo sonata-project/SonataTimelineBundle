@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.5.0](https://github.com/sonata-project/SonataTimelineBundle/compare/3.4.0...3.5.0) - 2020-01-12
+### Added
+- Added DoctrineBundle dependency in the `composer.json`
+
+### Changed
+- Changed `Sonata\TimelineBundle\Spread\AdminSpread::__construct` signature
+  to use `Doctrine\Common\Persistence\ManagerRegistry`
+  instead of  `Symfony\Bridge\Doctrine\RegistryInterface`
+
 ## [3.4.0](https://github.com/sonata-project/SonataTimelineBundle/compare/3.3.1...3.4.0) - 2019-06-16
 ### Added
 - Add missing package `twig/twig` with versions `^1.35 || ^2.4`
