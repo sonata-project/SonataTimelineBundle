@@ -9,7 +9,7 @@ The easiest way to install ``SonataTimelineBundle`` is to require it with Compos
 
 .. code-block:: bash
 
-    $ composer require sonata-project/timeline-bundle
+    composer require sonata-project/timeline-bundle
 
 Alternatively, you could add a dependency into your ``composer.json`` file directly.
 
@@ -121,20 +121,20 @@ Enable the Timeline Block
 
     .. code-block:: yaml
 
-        # config/packages/sonata_block.yaml
-
-        sonata_block:
-            blocks:
-                sonata.timeline.block.timeline:
-
-    .. code-block:: yaml
-
         # config/packages/sonata_admin.yaml
 
         sonata_admin:
             dashboard:
                 blocks:
                     - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+
+    .. code-block:: yaml
+
+        # config/packages/sonata_block.yaml
+
+        sonata_block:
+            blocks:
+                sonata.timeline.block.timeline:
 
 Edit the Timeline Block
 -----------------------
