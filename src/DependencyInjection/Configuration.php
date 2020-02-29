@@ -33,12 +33,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('sonata_timeline');
 
-        // Keep compatibility with symfony/config < 4.2
-        if (!method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->root('sonata_timeline');
-        } else {
-            $rootNode = $treeBuilder->getRootNode();
-        }
+        $rootNode = $treeBuilder->getRootNode();
 
         $supportedManagerTypes = ['orm', 'mongodb'];
 
