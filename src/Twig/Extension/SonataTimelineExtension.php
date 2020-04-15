@@ -30,7 +30,7 @@ class SonataTimelineExtension extends AbstractExtension
     /**
      * @param Pool $pool
      */
-    public function __construct(Pool $pool = null)
+    public function __construct(?Pool $pool = null)
     {
         $this->pool = $pool;
     }
@@ -56,7 +56,7 @@ class SonataTimelineExtension extends AbstractExtension
     /**
      * @return string
      */
-    public function generateLink(ComponentInterface $component, ActionInterface $action = null)
+    public function generateLink(ComponentInterface $component, ?ActionInterface $action = null)
     {
         if (!$this->pool) {
             return $component->getHash();
@@ -84,7 +84,7 @@ class SonataTimelineExtension extends AbstractExtension
     /**
      * @return AdminInterface
      */
-    protected function getAdmin(ComponentInterface $component, ActionInterface $action = null)
+    protected function getAdmin(ComponentInterface $component, ?ActionInterface $action = null)
     {
         if ($action && $adminComponent = $action->getComponent('admin_code')) {
             return $this->pool->getAdminByAdminCode($adminComponent);
