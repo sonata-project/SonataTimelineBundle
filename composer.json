@@ -43,6 +43,7 @@
     },
     "conflict": {
         "sonata-project/admin-bundle": "<3.56.1 || >=4.0",
+        "sonata-project/core-bundle": "<3.20",
         "sonata-project/user-bundle": "<4.3"
     },
     "require-dev": {
