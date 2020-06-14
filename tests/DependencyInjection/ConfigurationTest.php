@@ -13,30 +13,37 @@ declare(strict_types=1);
 
 namespace Sonata\TimelineBundle\Tests\DependencyInjection;
 
-use PHPUnit\Framework\TestCase;
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionConfigurationTestCase;
 use Sonata\TimelineBundle\DependencyInjection\Configuration;
-use Symfony\Component\Config\Definition\Processor;
+use Sonata\TimelineBundle\DependencyInjection\SonataTimelineExtension;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
-class ConfigurationTest extends TestCase
+final class ConfigurationTest extends AbstractExtensionConfigurationTestCase
 {
-    public function testBCCode(): void
+    public function testDefault(): void
     {
-        $processor = new Processor();
-        $configuration = $processor->processConfiguration(new Configuration(), [[
-            'class' => ['actionComponent' => 'stdClass'],
-        ]]);
-
-        $expected = [
+        $this->assertProcessedConfigurationEquals([
+            'manager_type' => 'orm',
             'class' => [
-                'action_component' => 'stdClass',
                 'component' => '%spy_timeline.class.component%',
+                'action_component' => '%spy_timeline.class.action_component%',
                 'action' => '%spy_timeline.class.action%',
                 'timeline' => '%spy_timeline.class.timeline%',
                 'user' => '%sonata.user.admin.user.entity%',
             ],
-            'manager_type' => 'orm',
-        ];
+        ], [
+            __DIR__.'/../Fixtures/configuration.yaml',
+        ]);
+    }
 
-        $this->assertSame($expected, $configuration);
+    protected function getContainerExtension(): ExtensionInterface
+    {
+        return new SonataTimelineExtension();
+    }
+
+    protected function getConfiguration(): ConfigurationInterface
+    {
+        return new Configuration();
     }
 }
