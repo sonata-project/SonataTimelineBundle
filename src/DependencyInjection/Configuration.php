@@ -58,6 +58,7 @@ class Configuration implements ConfigurationInterface
                             return $v;
                         })
                     ->end()
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('component')->defaultValue('%spy_timeline.class.component%')->cannotBeEmpty()->end()
                         // NEXT_MAJOR: Remove this key
