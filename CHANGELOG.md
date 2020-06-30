@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.6.0](https://github.com/sonata-project/SonataTimelineBundle/compare/3.5.0...3.6.0) - 2020-06-29
+### Added
+- [[#227](https://github.com/sonata-project/SonataTimelineBundle/pull/227)]
+  Support for Twig 3 ([@franmomu](https://github.com/franmomu))
+
+### Removed
+- [[#255](https://github.com/sonata-project/SonataTimelineBundle/pull/255)]
+  Remove SonataCoreBundle dependencies
+([@wbloszyk](https://github.com/wbloszyk))
+- [[#227](https://github.com/sonata-project/SonataTimelineBundle/pull/227)]
+  Remove `sonata-project/intl-bundle` dependency
+([@franmomu](https://github.com/franmomu))
+- [[#247](https://github.com/sonata-project/SonataTimelineBundle/pull/247)]
+  Support for Symfony < 4.3 ([@franmomu](https://github.com/franmomu))
+
 ## [3.5.0](https://github.com/sonata-project/SonataTimelineBundle/compare/3.4.0...3.5.0) - 2020-01-12
 ### Added
 - Added DoctrineBundle dependency in the `composer.json`
