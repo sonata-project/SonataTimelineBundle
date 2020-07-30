@@ -18,6 +18,12 @@ use Sonata\TimelineBundle\DependencyInjection\SonataTimelineExtension;
 
 class SonataTimelineExtensionTest extends AbstractExtensionTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->container->setParameter('kernel.bundles', ['SonataDoctrineBundle' => true]);
+    }
+
     public function testLoadDefault(): void
     {
         $this->load(['class' => [

@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\TimelineBundle\DependencyInjection;
 
-use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
+use Sonata\Doctrine\Mapper\Builder\OptionsBuilder;
+use Sonata\Doctrine\Mapper\DoctrineCollector;
+use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector as DeprecatedDoctrineCollector;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -38,6 +40,7 @@ class SonataTimelineExtension extends Extension
         $processor = new Processor();
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
+        $bundles = $container->getParameter('kernel.bundles');
 
         $config = $this->addDefaults($config);
 
@@ -50,7 +53,13 @@ class SonataTimelineExtension extends Extension
         $loader->load(sprintf('timeline_%s.xml', $config['manager_type']));
 
         $this->configureClass($config, $container);
-        $this->registerDoctrineMapping($config);
+
+        if (isset($bundles['SonataDoctrineBundle'])) {
+            $this->registerSonataDoctrineMapping($config);
+        } else {
+            // NEXT MAJOR: Remove next line and throw error when not registering SonataDoctrineBundle
+            $this->registerDoctrineMapping($config);
+        }
     }
 
     /**
@@ -90,15 +99,23 @@ class SonataTimelineExtension extends Extension
         $container->setParameter(sprintf('sonata.timeline.admin.user.%s', $modelType), $config['class']['user']);
     }
 
+    /**
+     * NEXT_MAJOR: Remove this method.
+     */
     public function registerDoctrineMapping(array $config): void
     {
+        @trigger_error(
+            'Using SonataEasyExtendsBundle is deprecated since sonata-project/timeline-bundle 3.x. Please register SonataDoctrineBundle as a bundle instead.',
+            E_USER_DEPRECATED
+        );
+
         foreach ($config['class'] as $type => $class) {
             if (!class_exists($class)) {
                 return;
             }
         }
 
-        $collector = DoctrineCollector::getInstance();
+        $collector = DeprecatedDoctrineCollector::getInstance();
 
         $collector->addAssociation($config['class']['timeline'], 'mapManyToOne', [
             'fieldName' => 'action',
@@ -177,5 +194,74 @@ class SonataTimelineExtension extends Extension
             ],
             'orphanRemoval' => false,
         ]);
+    }
+
+    private function registerSonataDoctrineMapping(array $config): void
+    {
+        foreach ($config['class'] as $type => $class) {
+            if (!class_exists($class)) {
+                return;
+            }
+        }
+
+        $collector = DoctrineCollector::getInstance();
+
+        $componentOptions = OptionsBuilder::createManyToOne('component', $config['class']['component'])
+            ->addJoin([
+                'name' => 'component_id',
+                'referencedColumnName' => 'id',
+                'onDelete' => 'CASCADE',
+            ]);
+
+        $collector->addAssociation(
+            $config['class']['timeline'],
+            'mapManyToOne',
+            OptionsBuilder::createManyToOne('action', $config['class']['action'])
+                ->inversedBy('timelines')
+                ->addJoin([
+                    'name' => 'action_id',
+                    'referencedColumnName' => 'id',
+                ])
+        );
+
+        $collector->addAssociation(
+            $config['class']['timeline'],
+            'mapManyToOne',
+            OptionsBuilder::createManyToOne('subject', $config['class']['component'])
+                ->addJoin([
+                    'name' => 'subject_id',
+                    'referencedColumnName' => 'id',
+                    'onDelete' => 'CASCADE',
+                ])
+        );
+
+        $collector->addAssociation(
+            $config['class']['action'],
+            'mapOneToMany',
+            OptionsBuilder::createOneToMany('actionComponents', $config['class']['action_component'])
+                ->cascade(['persist'])
+                ->mappedBy('action')
+        );
+
+        $collector->addAssociation(
+            $config['class']['action'],
+            'mapOneToMany',
+            OptionsBuilder::createOneToMany('timelines', $config['class']['timeline'])
+                ->mappedBy('action')
+        );
+
+        $collector->addAssociation(
+            $config['class']['action_component'],
+            'mapManyToOne',
+            OptionsBuilder::createManyToOne('action', $config['class']['action'])
+                ->inversedBy('actionComponents')
+                ->addJoin([
+                    'name' => 'action_id',
+                    'referencedColumnName' => 'id',
+                    'onDelete' => 'CASCADE',
+                ])
+        );
+
+        $collector->addAssociation($config['class']['action_component'], 'mapManyToOne', $componentOptions);
     }
 }

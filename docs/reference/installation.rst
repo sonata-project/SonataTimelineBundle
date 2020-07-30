@@ -5,34 +5,55 @@
 Installation
 ============
 
-The easiest way to install ``SonataTimelineBundle`` is to require it with Composer:
+Prerequisites
+-------------
 
-.. code-block:: bash
+PHP ^7.2 and Symfony ^4.4 are needed to make this bundle work, there are
+also some Sonata dependencies that need to be installed and configured beforehand.
+
+Required dependencies:
+
+* `SonataBlockBundle <https://sonata-project.org/bundles/block>`_
+
+And the persistence bundle (currently, not all the implementations of the Sonata persistence bundles are available):
+
+* `SonataDoctrineOrmAdminBundle <https://sonata-project.org/bundles/doctrine-orm-admin>`_
+
+Follow also their configuration step; you will find everything you need in
+their own installation chapter.
+
+.. note::
+
+    If a dependency is already installed somewhere in your project or in
+    another dependency, you won't need to install it again.
+
+Enable the Bundle
+-----------------
+
+Add ``SonataTimelineBundle`` via composer::
 
     composer require sonata-project/timeline-bundle
-
-Alternatively, you could add a dependency into your ``composer.json`` file directly.
 
 .. note::
 
     This will install the SpyTimelineBundle_, too.
 
-Now, enable the bundle in ``bundles.php`` file::
+Next, be sure to enable the bundles in your ``config/bundles.php`` file if they
+are not already enabled::
 
     // config/bundles.php
 
     return [
         // ...
-        Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
         Sonata\TimelineBundle\SonataTimelineBundle::class => ['all' => true],
         Spy\TimelineBundle\SpyTimelineBundle::class => ['all' => true],
     ];
 
 Configuration
--------------
+=============
 
 SpyTimelineBundle Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 .. code-block:: yaml
 
@@ -44,21 +65,21 @@ SpyTimelineBundle Configuration
                 object_manager: doctrine.orm.entity_manager
                 classes:
                     query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
-                    timeline:         App\Application\Sonata\TimelineBundle\Entity\Timeline
-                    action:           App\Application\Sonata\TimelineBundle\Entity\Action
-                    component:        App\Application\Sonata\TimelineBundle\Entity\Component
-                    action_component: App\Application\Sonata\TimelineBundle\Entity\ActionComponent
+                    timeline: App\Entity\SonataTimelineTimeline
+                    action: App\Entity\SonataTimelineAction
+                    component: App\Entity\SonataTimelineComponent
+                    action_component: App\Entity\SonataTimelineActionComponent
 
         filters:
             data_hydrator:
-                priority:          20
-                service:           spy_timeline.filter.data_hydrator
+                priority: 20
+                service: spy_timeline.filter.data_hydrator
                 filter_unresolved: false
                 locators:
                     - spy_timeline.filter.data_hydrator.locator.doctrine_orm
 
 SonataTimelineBundle Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 .. code-block:: yaml
 
@@ -67,50 +88,111 @@ SonataTimelineBundle Configuration
     sonata_timeline:
         manager_type: orm
         class:
-            timeline:         '%spy_timeline.class.timeline%'
-            action:           '%spy_timeline.class.action%'
-            component:        '%spy_timeline.class.component%'
-            action_component: '%spy_timeline.class.action_component%'
-            user:             '%sonata.user.admin.user.entity%'
+            timeline: App\Entity\SonataTimelineTimeline
+            action: App\Entity\SonataTimelineAction
+            component: App\Entity\SonataTimelineComponent
+            action_component: App\Entity\SonataTimelineActionComponent
 
-Extend the Bundle
------------------
+Doctrine ORM Configuration
+--------------------------
 
-At this point, the bundle is usable, but not quite ready yet. You need to
-generate the correct entities for the timeline:
+Add these bundles in the config mapping definition (or enable `auto_mapping`_)::
 
-.. code-block:: bash
+    # config/packages/doctrine.yaml
 
-    bin/console sonata:easy-extends:generate SonataTimelineBundle --dest=src --namespace_prefix=App
+    doctrine:
+        orm:
+            entity_managers:
+                default:
+                    mappings:
+                        SonataTimelineBundle: ~
+                        SpyTimelineBundle: ~
 
-.. note::
+And then create the corresponding entities, ``src/Entity/SonataTimelineTimeline``::
 
-    If you are not using Symfony Flex, use command without ``--namespace_prefix=App``.
+    // src/Entity/SonataTimelineTimeline.php
 
-With provided parameters, the files are generated in ``src/Application/Sonata/TimelineBundle``.
+    use Doctrine\ORM\Mapping as ORM;
+    use Sonata\TimelineBundle\Entity\Timeline;
 
-.. note::
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="timeline__timeline")
+     */
+    class SonataTimelineTimeline extends Timeline
+    {
+        /**
+         * @ORM\Id
+         * @ORM\GeneratedValue
+         * @ORM\Column(type="integer")
+         */
+        protected $id;
+    }
 
-    The command will generate domain objects in an ``App\Application`` namespace.
-    So you can point entities associations to a global and common namespace.
-    This will make entities sharing very easily as your models are accessible
-    through a global namespace. For instance the action will be
-    ``App\Application\Sonata\TimelineBundle\Entity\Action``.
+``src/Entity/SonataTimelineAction``::
 
+    // src/Entity/SonataTimelineAction.php
 
-Now, add the new ``Application`` Bundle into the ``bundles.php``::
+    use Doctrine\ORM\Mapping as ORM;
+    use Sonata\TimelineBundle\Entity\Action;
 
-    // config/bundles.php
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="timeline__action")
+     */
+    class SonataTimelineAction extends Action
+    {
+        /**
+         * @ORM\Id
+         * @ORM\GeneratedValue
+         * @ORM\Column(type="integer")
+         */
+        protected $id;
+    }
 
-    return [
-        // ...
-        App\Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle::class => ['all' => true],
-    ];
+``src/Entity/SonataTimelineComponent``::
 
-Update the Database Schema
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // src/Entity/SonataTimelineComponent.php
 
-.. code-block:: bash
+    use Doctrine\ORM\Mapping as ORM;
+    use Sonata\TimelineBundle\Entity\Component;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="timeline__component")
+     */
+    class SonataTimelineComponent extends Component
+    {
+        /**
+         * @ORM\Id
+         * @ORM\GeneratedValue
+         * @ORM\Column(type="integer")
+         */
+        protected $id;
+    }
+
+and ``src/Entity/SonataTimelineActionComponent``::
+
+    // src/Entity/SonataTimelineActionComponent.php
+
+    use Doctrine\ORM\Mapping as ORM;
+    use Sonata\TimelineBundle\Entity\ActionComponent;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="timeline__action_component")
+     */
+    class SonataTimelineActionComponent extends ActionComponent
+    {
+        /**
+         * @ORM\Id
+         * @ORM\GeneratedValue
+         * @ORM\Column(type="integer")
+         */
+        protected $id;
+    }
+
+The only thing left is to update your schema::
 
     bin/console doctrine:schema:update --force
 
@@ -158,4 +240,18 @@ And then edit the sonata_admin definition here, adding the "template" option.
 
 And now, you're good to go !
 
+Next Steps
+----------
+
+At this point, your Symfony installation should be fully functional, withouth errors
+showing up from SonataTimelineBundle. If, at this point or during the installation,
+you come across any errors, don't panic:
+
+    - Read the error message carefully. Try to find out exactly which bundle is causing the error.
+      Is it SonataTimelineBundle or one of the dependencies?
+    - Make sure you followed all the instructions correctly, for both SonataTimelineBundle and its dependencies.
+    - Still no luck? Try checking the project's `open issues on GitHub`_.
+
+.. _`open issues on GitHub`: https://github.com/sonata-project/SonataTimelineBundle/issues
 .. _SpyTimelineBundle: https://github.com/stephpy/timeline-bundle
+.. _`auto_mapping`: http://symfony.com/doc/4.4/reference/configuration/doctrine.html#configuration-overviews
