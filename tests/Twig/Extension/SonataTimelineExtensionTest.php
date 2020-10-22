@@ -88,15 +88,18 @@ class SonataTimelineExtensionTest extends TestCase
 
         $action = new Action();
 
-        $this->admin->expects($this->at(0))
+        $this->admin
             ->method('hasRoute')
-            ->with($this->equalTo('edit'))
-            ->willReturn(false);
-        $this->admin->expects($this->at(1))
-            ->method('hasRoute')
-            ->with($this->equalTo('show'))
-            ->willReturn(true);
-        $this->admin->expects($this->at(2))
+            ->withConsecutive(
+                ['edit'],
+                ['show']
+            )
+            ->willReturnOnConsecutiveCalls(
+                false,
+                true
+            );
+
+        $this->admin->expects($this->once())
             ->method('isGranted')
             ->with($this->equalTo('SHOW'))
             ->willReturn(true);
@@ -122,22 +125,27 @@ class SonataTimelineExtensionTest extends TestCase
 
         $action = new Action();
 
-        $this->admin->expects($this->at(0))
+        $this->admin
             ->method('hasRoute')
-            ->with($this->equalTo('edit'))
-            ->willReturn(true);
-        $this->admin->expects($this->at(1))
+            ->withConsecutive(
+                ['edit'],
+                ['show']
+            )
+            ->willReturnOnConsecutiveCalls(
+                true,
+                true
+            );
+
+        $this->admin
             ->method('isGranted')
-            ->with($this->equalTo('EDIT'))
-            ->willReturn(false);
-        $this->admin->expects($this->at(2))
-            ->method('hasRoute')
-            ->with($this->equalTo('show'))
-            ->willReturn(true);
-        $this->admin->expects($this->at(3))
-            ->method('isGranted')
-            ->with($this->equalTo('SHOW'))
-            ->willReturn(true);
+            ->withConsecutive(
+                ['EDIT'],
+                ['SHOW']
+            )
+            ->willReturnOnConsecutiveCalls(
+                false,
+                true
+            );
 
         $this->admin->expects($this->once())
             ->method('generateObjectUrl')
@@ -160,14 +168,16 @@ class SonataTimelineExtensionTest extends TestCase
 
         $action = new Action();
 
-        $this->admin->expects($this->at(0))
+        $this->admin
             ->method('hasRoute')
-            ->with($this->equalTo('edit'))
-            ->willReturn(false);
-        $this->admin->expects($this->at(1))
-            ->method('hasRoute')
-            ->with($this->equalTo('show'))
-            ->willReturn(false);
+            ->withConsecutive(
+                ['edit'],
+                ['show']
+            )
+            ->willReturnOnConsecutiveCalls(
+                false,
+                false
+            );
 
         $this->admin->expects($this->once())
             ->method('toString')
