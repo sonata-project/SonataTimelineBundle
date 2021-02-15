@@ -105,7 +105,7 @@ class SonataTimelineExtension extends Extension
     public function registerDoctrineMapping(array $config)
     {
         @trigger_error(
-            'Using SonataEasyExtendsBundle is deprecated since sonata-project/timeline-bundle 3.x. Please register SonataDoctrineBundle as a bundle instead.',
+            'Using SonataEasyExtendsBundle is deprecated since sonata-project/timeline-bundle 3.7. Please register SonataDoctrineBundle as a bundle instead.',
             \E_USER_DEPRECATED
         );
 
