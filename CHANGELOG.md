@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.7.0](https://github.com/sonata-project/SonataTimelineBundle/compare/3.6.0...3.7.0) - 2021-02-15
+### Changed
+- [[#306](https://github.com/sonata-project/SonataTimelineBundle/pull/306)] Updates dutch translations ([@zghosts](https://github.com/zghosts))
+- [[#260](https://github.com/sonata-project/SonataTimelineBundle/pull/260)] SonataEasyExtendsBundle is now optional, using SonataDoctrineBundle is preferred ([@jordisala1991](https://github.com/jordisala1991))
+
+### Deprecated
+- [[#260](https://github.com/sonata-project/SonataTimelineBundle/pull/260)] Using SonataEasyExtendsBundle to add Doctrine mapping information ([@jordisala1991](https://github.com/jordisala1991))
+
+### Removed
+- [[#264](https://github.com/sonata-project/SonataTimelineBundle/pull/264)] Support for PHP < 7.2 ([@wbloszyk](https://github.com/wbloszyk))
+- [[#264](https://github.com/sonata-project/SonataTimelineBundle/pull/264)] Support for Symfony < 4.4 ([@wbloszyk](https://github.com/wbloszyk))
+
 ## [3.6.0](https://github.com/sonata-project/SonataTimelineBundle/compare/3.5.0...3.6.0) - 2020-06-29
 ### Added
 - [[#227](https://github.com/sonata-project/SonataTimelineBundle/pull/227)]
