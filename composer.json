@@ -36,7 +36,7 @@
         "symfony/http-foundation": "^4.4",
         "symfony/http-kernel": "^4.4",
         "symfony/options-resolver": "^4.4",
-        "symfony/security-core": "^4.4",
+        "symfony/security-core": "^4.4.23",
         "twig/extra-bundle": "^3.0",
         "twig/intl-extra": "^3.0",
         "twig/twig": "^2.12 || ^3.0"
@@ -51,7 +51,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "sonata-project/admin-bundle": "^3.56.1",
         "sonata-project/user-bundle": "^4.3",
-        "symfony/phpunit-bridge": "^5.1.8"
+        "symfony/phpunit-bridge": "^5.3"
     },
     "config": {
         "sort-packages": true
