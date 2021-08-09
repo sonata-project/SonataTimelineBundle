@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="1">
-                <source>actions.sonata.admin.create</source>
-                <target>%subject% heeft %target% toegevoegd</target>
-            </trans-unit>
-            <trans-unit id="2">
-                <source>actions.sonata.admin.update</source>
-                <target>%subject% wijzigde %target%</target>
-            </trans-unit>
-            <trans-unit id="3">
-                <source>actions.sonata.admin.delete</source>
-                <target>%subject% verwijderde %target%</target>
-            </trans-unit>
-            <trans-unit id="4">
-                <source>actions.icon.sonata.admin.create</source>
-                <target>fa fa-plus-circle bg-green</target>
-            </trans-unit>
-            <trans-unit id="5">
-                <source>actions.icon.sonata.admin.update</source>
-                <target>fa fa-save bg-blue</target>
-            </trans-unit>
-            <trans-unit id="6">
-                <source>actions.icon.sonata.admin.delete</source>
-                <target>fa fa-minus-circle bg-red</target>
-            </trans-unit>
-            <trans-unit id="7">
-                <source>no_action</source>
-                <target>Geen actie voor nu.</target>
-            </trans-unit>
-            <trans-unit id="8">
-                <source>element_deleted</source>
-                <target>Element verwijderd</target>
-            </trans-unit>
-            <trans-unit id="9">
-                <source>element_reference_deleted</source>
-                <target>Referentie '%reference%' verwijderd</target>
-            </trans-unit>
-            <trans-unit id="10">
-                <source>form.label_title</source>
-                <target>Titel</target>
-            </trans-unit>
-            <trans-unit id="11">
-                <source>form.label_max_per_page</source>
-                <target>Items per pagina</target>
-            </trans-unit>
-            <trans-unit id="form.label_translation_domain">
-                <source>form.label_translation_domain</source>
-                <target>Vertaling domein</target>
-            </trans-unit>
-            <trans-unit id="form.label_icon">
-                <source>form.label_icon</source>
-                <target>Icoon</target>
-            </trans-unit>
-            <trans-unit id="form.label_class">
-                <source>form.label_class</source>
-                <target>CSS Class</target>
-            </trans-unit>
-        </body>
-    </file>
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>actions.sonata.admin.create</source>
+        <target>%subject% heeft %target% toegevoegd</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>actions.sonata.admin.update</source>
+        <target>%subject% wijzigde %target%</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>actions.sonata.admin.delete</source>
+        <target>%subject% verwijderde %target%</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>actions.icon.sonata.admin.create</source>
+        <target>fa fa-plus-circle bg-green</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>actions.icon.sonata.admin.update</source>
+        <target>fa fa-save bg-blue</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>actions.icon.sonata.admin.delete</source>
+        <target>fa fa-minus-circle bg-red</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>no_action</source>
+        <target>Geen actie voor nu.</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>element_deleted</source>
+        <target>Element verwijderd</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>element_reference_deleted</source>
+        <target>Referentie '%reference%' verwijderd</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>form.label_title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>form.label_max_per_page</source>
+        <target>Items per pagina</target>
+      </trans-unit>
+      <trans-unit id="form.label_translation_domain">
+        <source>form.label_translation_domain</source>
+        <target>Vertaling domein</target>
+      </trans-unit>
+      <trans-unit id="form.label_icon">
+        <source>form.label_icon</source>
+        <target>Icoon</target>
+      </trans-unit>
+      <trans-unit id="form.label_class">
+        <source>form.label_class</source>
+        <target>CSS Class</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
