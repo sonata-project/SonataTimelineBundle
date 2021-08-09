@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-    <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="1">
-                <source>actions.sonata.admin.create</source>
-                <target>%subject% a créé %target%</target>
-            </trans-unit>
-            <trans-unit id="2">
-                <source>actions.sonata.admin.update</source>
-                <target>%subject% a modifié %target%</target>
-            </trans-unit>
-            <trans-unit id="3">
-                <source>actions.sonata.admin.delete</source>
-                <target>%subject% a supprimé %target%</target>
-            </trans-unit>
-            <trans-unit id="4">
-                <source>actions.icon.sonata.admin.create</source>
-                <target>fa fa-plus-circle bg-green</target>
-            </trans-unit>
-            <trans-unit id="5">
-                <source>actions.icon.sonata.admin.update</source>
-                <target>fa fa-save bg-blue</target>
-            </trans-unit>
-            <trans-unit id="6">
-                <source>actions.icon.sonata.admin.delete</source>
-                <target>fa fa-minus-circle bg-red</target>
-            </trans-unit>
-            <trans-unit id="7">
-                <source>no_action</source>
-                <target>Aucune action actuellement.</target>
-            </trans-unit>
-            <trans-unit id="8">
-                <source>element_deleted</source>
-                <target>Elément supprimé</target>
-            </trans-unit>
-            <trans-unit id="9">
-                <source>element_reference_deleted</source>
-                <target>Référence '%reference%' supprimée</target>
-            </trans-unit>
-            <trans-unit id="10">
-                <source>form.label_title</source>
-                <target>Titre</target>
-            </trans-unit>
-            <trans-unit id="11">
-                <source>form.label_max_per_page</source>
-                <target>Par page</target>
-            </trans-unit>
-            <trans-unit id="form.label_translation_domain">
-                <source>form.label_translation_domain</source>
-                <target>Domaine de traduction</target>
-            </trans-unit>
-            <trans-unit id="form.label_icon">
-                <source>form.label_icon</source>
-                <target>Icône</target>
-            </trans-unit>
-            <trans-unit id="form.label_class">
-                <source>form.label_class</source>
-                <target>Classe CSS</target>
-            </trans-unit>
-        </body>
-    </file>
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>actions.sonata.admin.create</source>
+        <target>%subject% a créé %target%</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>actions.sonata.admin.update</source>
+        <target>%subject% a modifié %target%</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>actions.sonata.admin.delete</source>
+        <target>%subject% a supprimé %target%</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>actions.icon.sonata.admin.create</source>
+        <target>fa fa-plus-circle bg-green</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>actions.icon.sonata.admin.update</source>
+        <target>fa fa-save bg-blue</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>actions.icon.sonata.admin.delete</source>
+        <target>fa fa-minus-circle bg-red</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>no_action</source>
+        <target>Aucune action actuellement.</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>element_deleted</source>
+        <target>Elément supprimé</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>element_reference_deleted</source>
+        <target>Référence '%reference%' supprimée</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>form.label_title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>form.label_max_per_page</source>
+        <target>Par page</target>
+      </trans-unit>
+      <trans-unit id="form.label_translation_domain">
+        <source>form.label_translation_domain</source>
+        <target>Domaine de traduction</target>
+      </trans-unit>
+      <trans-unit id="form.label_icon">
+        <source>form.label_icon</source>
+        <target>Icône</target>
+      </trans-unit>
+      <trans-unit id="form.label_class">
+        <source>form.label_class</source>
+        <target>Classe CSS</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
