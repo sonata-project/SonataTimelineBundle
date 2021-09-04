@@ -65,14 +65,14 @@ class AdminSpreadTest extends TestCase
         $action = new Action();
         $action->setVerb('a.not.supported.verb');
 
-        $this->assertFalse($spread->supports($action), '"a.not.supported.verb" should not be supported');
+        static::assertFalse($spread->supports($action), '"a.not.supported.verb" should not be supported');
 
         // Test supported verbs
         foreach ($this->supportedVerbs as $supportedVerb) {
             $action = new Action();
             $action->setVerb($supportedVerb);
 
-            $this->assertTrue($spread->supports($action), sprintf('Verb "%s" should be supported', $action->getVerb()));
+            static::assertTrue($spread->supports($action), sprintf('Verb "%s" should be supported', $action->getVerb()));
         }
     }
 
@@ -93,7 +93,7 @@ class AdminSpreadTest extends TestCase
         $collection = new EntryCollection();
         $spread->process($action, $collection);
 
-        $this->assertCount(2, $collection->getIterator(), 'Should return 2');
+        static::assertCount(2, $collection->getIterator(), 'Should return 2');
 
         $usersCount = 0;
 
@@ -102,12 +102,12 @@ class AdminSpreadTest extends TestCase
             foreach ($users as $entry) {
                 ++$usersCount;
 
-                $this->assertInstanceOf(EntryUnaware::class, $entry, 'Should return an instance of EntryUnaware');
-                $this->assertSame(FakeUserEntity::class, $entry->getSubjectModel());
+                static::assertInstanceOf(EntryUnaware::class, $entry, 'Should return an instance of EntryUnaware');
+                static::assertSame(FakeUserEntity::class, $entry->getSubjectModel());
             }
         }
 
-        $this->assertSame(5, $usersCount / 2, 'Should return 5 users for 2 iterations');
+        static::assertSame(5, $usersCount / 2, 'Should return 5 users for 2 iterations');
     }
 
     protected function getFakeUsers(): array
