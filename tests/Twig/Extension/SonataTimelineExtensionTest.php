@@ -44,7 +44,7 @@ class SonataTimelineExtensionTest extends TestCase
         $this->pool = $this->createMock(Pool::class);
         $this->pool
             ->method('getAdminByClass')
-            ->with($this->equalTo('Acme\DemoBundle\Model\Demo'))
+            ->with(static::equalTo('Acme\DemoBundle\Model\Demo'))
             ->willReturn($this->admin);
 
         $this->twigExtension = new SonataTimelineExtension($this->pool);
@@ -58,26 +58,26 @@ class SonataTimelineExtensionTest extends TestCase
 
         $action = new Action();
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('hasRoute')
-            ->with($this->equalTo('edit'))
+            ->with(static::equalTo('edit'))
             ->willReturn(true);
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('isGranted')
-            ->with($this->equalTo('EDIT'))
+            ->with(static::equalTo('EDIT'))
             ->willReturn(true);
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('generateObjectUrl')
-            ->with($this->equalTo('edit'), $this->anything())
+            ->with(static::equalTo('edit'), static::anything())
             ->willReturn('acme/demo/2/edit');
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('toString')
-            ->with($this->anything())
+            ->with(static::anything())
             ->willReturn('Text');
 
-        $this->assertSame('<a href="acme/demo/2/edit">Text</a>', $this->twigExtension->generateLink($component, $action));
+        static::assertSame('<a href="acme/demo/2/edit">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
     public function testGenerateLinkDisabledEdit(): void
@@ -99,22 +99,22 @@ class SonataTimelineExtensionTest extends TestCase
                 true
             );
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('isGranted')
-            ->with($this->equalTo('SHOW'))
+            ->with(static::equalTo('SHOW'))
             ->willReturn(true);
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('generateObjectUrl')
-            ->with($this->equalTo('show'), $this->anything())
+            ->with(static::equalTo('show'), static::anything())
             ->willReturn('acme/demo/2/show');
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('toString')
-            ->with($this->anything())
+            ->with(static::anything())
             ->willReturn('Text');
 
-        $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
+        static::assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
     public function testGenerateLinkNoEditPermission(): void
@@ -147,17 +147,17 @@ class SonataTimelineExtensionTest extends TestCase
                 true
             );
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('generateObjectUrl')
-            ->with($this->equalTo('show'), $this->anything())
+            ->with(static::equalTo('show'), static::anything())
             ->willReturn('acme/demo/2/show');
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('toString')
-            ->with($this->anything())
+            ->with(static::anything())
             ->willReturn('Text');
 
-        $this->assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
+        static::assertSame('<a href="acme/demo/2/show">Text</a>', $this->twigExtension->generateLink($component, $action));
     }
 
     public function testGenerateLinkDisabledEditAndShow(): void
@@ -179,11 +179,11 @@ class SonataTimelineExtensionTest extends TestCase
                 false
             );
 
-        $this->admin->expects($this->once())
+        $this->admin->expects(static::once())
             ->method('toString')
-            ->with($this->anything())
+            ->with(static::anything())
             ->willReturn('Text');
 
-        $this->assertSame('Text', $this->twigExtension->generateLink($component, $action));
+        static::assertSame('Text', $this->twigExtension->generateLink($component, $action));
     }
 }
