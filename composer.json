@@ -63,5 +63,6 @@
         "psr-4": {
             "Sonata\\TimelineBundle\\Tests\\": "tests/"
         }
-    }
+    },
+    "abandoned": true
 }
