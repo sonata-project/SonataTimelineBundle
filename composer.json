@@ -8,7 +8,7 @@
         "time",
         "wall"
     ],
-    "homepage": "https://sonata-project.org/bundles/timeline",
+    "homepage": "https://docs.sonata-project.org/projects/SonataTimelineBundle",
     "license": "MIT",
     "authors": [
         {
